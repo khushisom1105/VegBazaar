@@ -1,6 +1,6 @@
 const { StatusCodes } = require("http-status-codes");
 const crypto = require('crypto'); 
-const nodemailer = require('nodemailer');
+const nodemailer = require('node-mailer');
 const bcrypt = require("bcryptjs");
 const { createUser, getUserById, getUserByemail, getUserByPhone } = require("../services/userOperation.js");
 const { setUser, getuser } = require("../services/userAuth.js");
