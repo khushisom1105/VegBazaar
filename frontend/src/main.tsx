@@ -6,7 +6,7 @@ import Product from './Product.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <App />
+    {/* <App /> */}
     <Product />
   </StrictMode>,
 )
