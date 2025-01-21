@@ -1,8 +1,19 @@
+import Banner from "./components/Banner";
+import CategoryGrid from "./components/CategoryGrid";
+import DiscountSlider from "./components/DiscountSlider";
+import FeatureSection from "./components/FeatureSection";
+import Navbar from "./components/Navbar";
+import TabSection from "./components/TabSection";
 
 function App() {
   return (
     <>
-     <h2 className='text-3xl text-red-600'>VegBazaar</h2>
+     <Navbar/>
+     <Banner/>
+     <DiscountSlider/>
+     <FeatureSection/>
+     <CategoryGrid/>
+     <TabSection/>
     </>
   )
 }
