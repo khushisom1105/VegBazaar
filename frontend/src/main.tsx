@@ -5,6 +5,8 @@ import App from './App.tsx'
 import Product from './Product.tsx'
 
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import Banner from './homepage/banner.tsx'
+import Footer from './homepage/footer.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -17,5 +19,7 @@ createRoot(document.getElementById('root')!).render(
                 <Route path="/product" element={<Product />} />
             </Routes>
         </Router>
+    <Banner />
+    <Footer />
   </StrictMode>,
 )
