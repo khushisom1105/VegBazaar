@@ -5,17 +5,20 @@ import FeatureSection from "./components/FeatureSection";
 import Navbar from "./components/Navbar";
 import TabSection from "./components/TabSection";
 
-function App() {
+function app() {
   return (
     <>
+
      <Navbar/>
      <Banner/>
      <DiscountSlider/>
      <FeatureSection/>
      <CategoryGrid/>
      <TabSection/>
+
     </>
+    
   )
 }
 
-export default App
+export default app
