@@ -1,0 +1,3 @@
+In SliderFilter.tsx == I have written the code(which is at the botton) with the backend, only the dataset is remaining. Till then upper code is good for frontend
+
+In StarRating.tsx == I have created the rating stars dynamically. The below commented code is used to call the above code in different page.
