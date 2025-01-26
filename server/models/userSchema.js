@@ -35,7 +35,13 @@ const userSchema = new mongoose.Schema(
     userId:{
       type:String,
       require:true,
-    }
+    },
+    otp: {
+      type: String,
+    },
+    otpExpiry: {
+      type: Date,
+    },
   },
   { timestamps: true }
 );
