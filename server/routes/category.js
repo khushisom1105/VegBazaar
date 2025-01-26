@@ -1,16 +1,18 @@
 const express = require("express");
 const router = express.Router();
 
-const { } = require("../controllers/category");
 const {
-    validateSignUpRequest,
+    createCategoryController,
+    updateCategoryController,
+    getAllCategoriesController,
+    uploadImage, // Middleware for handling image uploads
+  } = require("../controllers/category");
+const {
     isRequestValidated,
-    validateSignInRequest ,
-    validateForgotRequest
 } = require("../validator/auth");
 
-router.route("/fetch").post( isRequestValidated); 
-router.route("/create").post( isRequestValidated);
-router.route("/update").post(isRequestValidated);
+router.post("/create",isRequestValidated, uploadImage, createCategoryController);
+router.put("/:categoryId",isRequestValidated, uploadImage, updateCategoryController);
+router.get("/fetch",isRequestValidated, getAllCategoriesController);
 
 module.exports = router;

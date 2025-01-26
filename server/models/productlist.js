@@ -13,9 +13,9 @@
         required: true,
         min: 0
       },
-    category: {
+    product: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Product',  // Reference to the Category model
+      ref: 'Product',  // Reference to the Product model
       required: true
     }
   

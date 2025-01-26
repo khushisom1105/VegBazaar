@@ -21,10 +21,14 @@ const productSchema = new mongoose.Schema({
     ref: 'Category',  // Reference to the Category model
     required: true
   },
-  images: [{
-    type: String,  // Array of image URLs for the product
-    default: []
-  }],
+  images: {
+    type: String, 
+    default:null 
+  },
+  // images: [{
+  //   type: String,  // Array of image URLs for the product
+  //   default: []
+  // }],
   status: {
     type: String,
     enum: ['active', 'inactive', 'discontinued'],  // Enum for product status
