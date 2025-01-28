@@ -5,10 +5,14 @@ import App from './App.tsx'
 import Product from './Product.tsx'
 
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-import Banner from './homepage/banner.tsx'
+// import BannerD from './homepage/banner.tsx'
 import Footer from './homepage/footer.tsx'
+import Wishlist from './Wishlist.tsx'
+import Checkout from './Checkout.tsx'
+
 
 createRoot(document.getElementById('root')!).render(
+  
   <StrictMode>
     <Router>
             {/* <nav>
@@ -17,9 +21,10 @@ createRoot(document.getElementById('root')!).render(
             <Routes>
                 <Route path="/" element={<App />} />
                 <Route path="/product" element={<Product />} />
+                <Route path="/wishlist" element={<Wishlist />} />
+                <Route path="/checkout" element={<Checkout />} />
             </Routes>
         </Router>
-    <Banner />
-    <Footer />
+    {/* <Footer /> */}
   </StrictMode>,
 )

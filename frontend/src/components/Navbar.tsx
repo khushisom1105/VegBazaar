@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   Dialog,
   DialogPanel,
@@ -26,6 +26,7 @@ import {
   PhoneIcon,
   PlayCircleIcon,
 } from "@heroicons/react/20/solid";
+import Cart from "./Cart";
 
 const products = [
   {
@@ -66,6 +67,34 @@ const callsToAction = [
 
 export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // Cart
+  const [cartOpen, setCartOpen] = useState<boolean>(false);
+  const cartRef = useRef<HTMLDivElement>(null);
+
+  const handleCartClick = () => {
+    setCartOpen((prev) => !prev); // Toggle cart visibility
+  };
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (cartRef.current && !cartRef.current.contains(event.target as Node)) {
+      setCartOpen(false); // Close the cart if clicked outside
+    }
+  };
+
+  useEffect(() => {
+    if (cartOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [cartOpen]);
+
+
 
   return (
     <header className="bg-white/70 backdrop-blur">
@@ -111,7 +140,7 @@ export default function Example() {
                     key={item.name}
                     className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm/6 hover:bg-gray-50"
                   >
-                    
+
                     <div className="flex-auto">
                       <a
                         href={item.href}
@@ -143,6 +172,12 @@ export default function Example() {
             <a href="#" className="text-sm/6 font-semibold text-gray-900">
               Sign Up <span aria-hidden="true">&rarr;</span>
             </a>
+            <button onClick={handleCartClick}>Cart</button>
+            {cartOpen && (
+              <div ref={cartRef}>
+                <Cart closeCart={() => setCartOpen(false)} />
+              </div>
+            )}
           </div>
         </div>
       </nav>

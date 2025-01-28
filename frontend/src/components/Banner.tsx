@@ -4,7 +4,7 @@ import arrowIcon from "/assets/images/icons/Button-arrow-light.svg";
 
 const Banner = () => {
   return (
-    <div className="flex flex-col lg:flex-row items-center bg-gray-100 py-12 px-6 lg:px-16 xl:px-24 space-y-8 lg:space-y-0">
+    <div className="flex flex-col lg:flex-row items-center bg-gray-100 py-12 px-6 lg:px-16 xl:px-24 space-y-8 lg:space-y-0 ">
       {/* Text Section */}
       <div className="lg:w-1/2 space-y-6 text-center lg:text-left">
         <h5 className="text-lg font-semibold text-gray-700">Discount up to 20%</h5>

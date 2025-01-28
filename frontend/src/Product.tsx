@@ -125,8 +125,8 @@ function Product() {
                                         })}
                                     </div>
                                     <div className='flex justify-between items-center'>
-                                        <p className='font-marcellus font-semibold text-lg text-[#3B5236]'>₹{product.discountPrice}</p>
-                                        <p className='font-marcellus font-semibold text-sm text-[#C9CDC2]' style={{ textDecoration: 'line-through' }}>₹{product.originalPrice}</p>
+                                        <p className='font-marcellus font-semibold text-lg text-[#3B5236]'>₹{product.discountPrice.toFixed(2)}</p>
+                                        <p className='font-marcellus font-semibold text-sm text-[#C9CDC2]' style={{ textDecoration: 'line-through' }}>₹{product.originalPrice.toFixed(2)}</p>
                                         <div className='flex items-center h-7 w-7 bg-[#F3EAD7] mr-2 rounded-full'>
                                             <div className="h-7 w-7 inline-flex justify-center items-center"><IoMdHeartEmpty className='w-5 h-5 text-[#3B5236]' /></div>
                                         </div>
