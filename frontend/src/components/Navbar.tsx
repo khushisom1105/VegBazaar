@@ -67,34 +67,7 @@ const callsToAction = [
 
 export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  // Cart
-  const [cartOpen, setCartOpen] = useState<boolean>(false);
-  const cartRef = useRef<HTMLDivElement>(null);
-
-  const handleCartClick = () => {
-    setCartOpen((prev) => !prev); // Toggle cart visibility
-  };
-
-  const handleClickOutside = (event: MouseEvent) => {
-    if (cartRef.current && !cartRef.current.contains(event.target as Node)) {
-      setCartOpen(false); // Close the cart if clicked outside
-    }
-  };
-
-  useEffect(() => {
-    if (cartOpen) {
-      document.addEventListener("mousedown", handleClickOutside);
-    } else {
-      document.removeEventListener("mousedown", handleClickOutside);
-    }
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [cartOpen]);
-
-
+  const [cartOpen, setCartOpen] = useState(false);
 
   return (
     <header className="bg-white/70 backdrop-blur">
@@ -172,12 +145,15 @@ export default function Example() {
             <a href="#" className="text-sm/6 font-semibold text-gray-900">
               Sign Up <span aria-hidden="true">&rarr;</span>
             </a>
-            <button onClick={handleCartClick}>Cart</button>
+            {/* <button onClick={handleCartClick}>Cart</button>
             {cartOpen && (
               <div ref={cartRef}>
                 <Cart closeCart={() => setCartOpen(false)} />
               </div>
-            )}
+            )} */}
+
+            <button onClick={() => setCartOpen(true)}>Cart</button>
+            <Cart isOpen={cartOpen} closeCart={() => setCartOpen(false)} />
           </div>
         </div>
       </nav>
@@ -258,6 +234,8 @@ export default function Example() {
                 >
                   Sign Up
                 </a>
+                <button onClick={() => setCartOpen(true)}>Cart</button>
+                <Cart isOpen={cartOpen} closeCart={() => setCartOpen(false)} />
               </div>
             </div>
           </div>

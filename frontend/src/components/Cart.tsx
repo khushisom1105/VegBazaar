@@ -1,5 +1,5 @@
 // 'use client';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 // import Image from 'next/image';
@@ -45,21 +45,33 @@ interface Product {
     },
   ];
   
-  function Cart({ closeCart }: { closeCart: () => void }) {
-    const [open, setOpen] = useState<boolean>(true);
+  const Cart: React.FC<CartProps> = ({ isOpen, closeCart }) => {
+    const cartRef = useRef<HTMLDivElement>(null);
+  
+    // Close cart when clicking outside
+    useEffect(() => {
+      const handleClickOutside = (event: MouseEvent) => {
+        if (cartRef.current && !cartRef.current.contains(event.target as Node)) {
+          closeCart();
+        }
+      };
+  
+      if (isOpen) {
+        document.addEventListener("mousedown", handleClickOutside);
+      } else {
+        document.removeEventListener("mousedown", handleClickOutside);
+      }
+  
+      return () => {
+        document.removeEventListener("mousedown", handleClickOutside);
+      };
+    }, [isOpen, closeCart]);
   
   
     return (
       <div className="relative">
-        {open && (
-          <div
-            className="fixed inset-0 z-50 bg-black opacity-50"
-            onClick={() => setOpen(false)}
-            style={{ pointerEvents: 'auto' }}
-          />
-        )}
-      <Transition.Root show={open} as={React.Fragment}>
-        <Dialog as="div" className="fixed inset-0 z-50 overflow-y-auto" onClose={setOpen}>
+      <Transition.Root show={isOpen} as={React.Fragment}>
+        <Dialog as="div" className="fixed inset-0 z-50 overflow-y-auto" onClose={closeCart}>
           <Transition.Child
             as={React.Fragment}
             enter="ease-in-out duration-500"
@@ -166,7 +178,6 @@ interface Product {
                             <button
                               type="button"
                               className="font-medium text-[#E46A4B] hover:text-[#ffa892]"
-                              onClick={() => setOpen(false)}
                           
                             >
                               Continue Shopping
