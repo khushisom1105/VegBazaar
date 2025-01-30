@@ -27,6 +27,6 @@ createRoot(document.getElementById('root')!).render(
                 <Route path="/checkout" element={<Checkout />} />
             </Routes>
         </Router>
-    {/* <Footer /> */}
+    <Footer />
   </StrictMode>,
 )
