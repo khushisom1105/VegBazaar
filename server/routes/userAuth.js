@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const { signUp, signIn , forgotPass, verifyOtp, updatePassword, sendOtpEmail,, emailVerification} = require("../controllers/userAuth");
+const { signUp, signIn , forgotPass, verifyOtp, updatePassword, sendOtpEmail, emailVerification} = require("../controllers/userAuth");
 const {
     validateSignUpRequest,
     isRequestValidated,
