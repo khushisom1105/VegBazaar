@@ -73,6 +73,7 @@ const validateForgotRequest = [
   .normalizeEmail()
   .optional(),
 ];
+
 const isRequestValidated = (req, res, next) => {
   const errors = validationResult(req);
   if (errors.array().length > 0) {
@@ -104,7 +105,7 @@ const checkAuth = async (req, res, next) => {
   next();
 
 };
-
+    
 module.exports = {
   validateSignUpRequest,
   isRequestValidated,

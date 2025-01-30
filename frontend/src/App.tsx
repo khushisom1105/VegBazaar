@@ -8,7 +8,6 @@ import TabSection from "./components/TabSection";
 function app() {
   return (
     <>
-
      <Navbar/>
      <Banner/>
      <DiscountSlider/>

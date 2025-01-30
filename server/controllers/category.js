@@ -53,12 +53,11 @@ const createCategoryController = async (req, res) => {
   }
 };
 
-// Middleware to handle file uploads
 const uploadImage = upload.single("image");
 
 const updateCategoryController = async (req, res) => {
   try {
-    const { categoryId } = req.params; // Category ID from URL params
+    const { categoryId } = req.params; 
     const { name, description, slug, status } = req.body;
 
     if (!name && !description && !slug && !status && !req.file) {
@@ -70,7 +69,6 @@ const updateCategoryController = async (req, res) => {
     const imageFile = req.file;
     let imageUrl = null;
 
-    // Upload new image if provided
     if (imageFile) {
       const uploadResult = await cloudinary.uploader.upload(imageFile.path, {
         folder: "categories",
@@ -111,7 +109,6 @@ const updateCategoryController = async (req, res) => {
   }
 };
 
-// Fetch All Categories Controller
 const getAllCategoriesController = async (req, res) => {
   try {
     const categories = await categoryServices.getAllCategories();
@@ -128,7 +125,6 @@ const getAllCategoriesController = async (req, res) => {
   }
 };
 
-// Export Controllers
 module.exports = {
   uploadImage,
   createCategoryController,
