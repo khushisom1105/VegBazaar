@@ -137,7 +137,7 @@ function Product() {
                     </div>
                     <img src={leaf} className='absolute -right-12 -top-16 w-16 hidden sm:block'></img>
                     <button className="flex justify-center items-center gap-2 md:hidden  bg-[#3B5236] text-white p-2 rounded-full shadow-lg" onClick={toggleMenu}>
-                    <CiFilter size={20} />
+                        <CiFilter size={20} />
                         <p className='font-nunito font-semibold'>Filter </p>
                     </button>
                     <div className="grid lg:grid-cols-3 gap-8 sm:grid-cols-2 grid-cols-1">
