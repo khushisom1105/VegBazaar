@@ -178,7 +178,6 @@ interface Product {
                             <button
                               type="button"
                               className="font-medium text-[#E46A4B] hover:text-[#ffa892]"
-                          
                             >
                               Continue Shopping
                               <span aria-hidden="true"> &rarr;</span>
