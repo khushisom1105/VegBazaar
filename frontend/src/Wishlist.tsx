@@ -69,6 +69,11 @@ const products: Product[] = [
 function Wishlist() {
     return (
         <div>
+            <div className='bg-[#3B5236] flex flex-col justify-center items-center h-96 text-white gap-3 p-10'>
+                <p className='flex font-marcellus text-3xl font-semibold'>Wishlist</p>
+                <p className='flex'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, eos. Autem aperiam dicta ad ex.</p>
+                <p className='flex font-nunito text-lg font-semibold'>Home &rarr; Wishlist</p>
+            </div>
             <div className="m-28 md:block hidden">
                 <table className="w-full border-collapse font-marcellus">
                     <thead>

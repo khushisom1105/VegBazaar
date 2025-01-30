@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Footer from './homepage/footer.tsx'
 import Wishlist from './Wishlist.tsx'
 import Checkout from './Checkout.tsx'
+import Navbar from './components/Navbar.tsx'
 
 
 createRoot(document.getElementById('root')!).render(
@@ -18,6 +19,7 @@ createRoot(document.getElementById('root')!).render(
             {/* <nav>
                 <Link to="/">Main Page</Link> | <Link to="/product">Product Page</Link>
             </nav> */}
+            <Navbar/>
             <Routes>
                 <Route path="/" element={<App />} />
                 <Route path="/product" element={<Product />} />

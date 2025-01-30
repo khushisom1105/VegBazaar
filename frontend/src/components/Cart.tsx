@@ -166,6 +166,7 @@ interface Product {
                         <div className="mt-6">
                         <Link to="/checkout"><div
                             className="flex items-center justify-center rounded-md border border-transparent bg-[#3B5236] px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-[#D3B758]"
+                            onClick={closeCart}
                           >
                             Checkout
                             </div>
@@ -179,8 +180,7 @@ interface Product {
                               type="button"
                               className="font-medium text-[#E46A4B] hover:text-[#ffa892]"
                             >
-                              Continue Shopping
-                              <span aria-hidden="true"> &rarr;</span>
+                              <span aria-hidden="true"> &nbsp;Continue Shopping&rarr;</span>
                             </button></Link>
                           </p>
                         </div>
