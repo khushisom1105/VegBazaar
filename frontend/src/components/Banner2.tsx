@@ -1,5 +1,4 @@
 import { FaArrowRightLong } from "react-icons/fa6";
-import bannerImg from "../../public/assets/images/products/slider-img.webp"
 
 import { useState, useEffect } from "react";
 

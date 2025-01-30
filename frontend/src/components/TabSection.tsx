@@ -2,13 +2,7 @@ import { useState } from "react";
 import { FaArrowRightLong } from "react-icons/fa6";
 
 function TabSection() {
-  const tabs = [
-    { id: "vegetables", label: "FRUITS AND VEGETABLES" },
-    { id: "bakery", label: "BAKERY" },
-    { id: "nonveg", label: "MEAT AND SEAFOOD", active: true },
-    { id: "beverage", label: "BEVERAGE" },
-    { id: "snacks", label: "BISCUIT AND SNACKS" },
-  ];
+
   const products = [
     {
       id: 1,
