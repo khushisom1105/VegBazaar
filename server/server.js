@@ -5,7 +5,7 @@ const app = express();
 const cors = require("cors");
 const bodyparse = require("body-parser");
 const authRouter = require("./routes/index.js");
-const port = 3000;
+const port = 4007;
 app.use(
     cors({
       origin: "*",

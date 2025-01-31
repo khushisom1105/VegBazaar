@@ -64,6 +64,15 @@ const validateSignInRequest = [
     .withMessage("Password must be at least 6 character long"),
 ];
 
+const validateForgotRequest = [
+  check("email")
+  .notEmpty()
+  .withMessage("Email can not be empty")
+  .isEmail()
+  .withMessage("Valid email is required")
+  .normalizeEmail()
+  .optional(),
+];
 
 const isRequestValidated = (req, res, next) => {
   const errors = validationResult(req);
@@ -94,12 +103,13 @@ const checkAuth = async (req, res, next) => {
     });
   }
   next();
+
 };
-
-
+    
 module.exports = {
   validateSignUpRequest,
   isRequestValidated,
   validateSignInRequest,
   checkAuth,
+  validateForgotRequest
 };

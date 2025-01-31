@@ -23,6 +23,7 @@ function getUser(token) {
     return e;
   }
 }
+
 module.exports = {
   setUser,
   getUser,
