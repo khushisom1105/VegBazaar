@@ -12,7 +12,7 @@ import { IoIosSearch, IoMdClose, IoMdMenu } from "react-icons/io";
 import { FaStar } from "react-icons/fa";
 import { IoMdHeartEmpty } from "react-icons/io";
 import { FaArrowRightLong } from "react-icons/fa6";
-
+import axios from "axios";
 import { useEffect } from 'react';
 import { CiFilter } from 'react-icons/ci';
 
@@ -22,10 +22,19 @@ function Product() {
     const location = useLocation();
     const category = location.state?.category; 
     const [menuOpen, setMenuOpen] = useState(false);
-
+    const [categories, setCategories] = useState([]);
 useEffect(() => {
-   
+  
+      fetchCategories();
 }, []);
+const fetchCategories = async () => {
+    try {
+      const response = await axios.get("http://localhost:4007/category/fetch");
+      setCategories(response.data.categories);
+    } catch (error) {
+      console.error("Error fetching categories:", error);
+    }
+  };
 
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
@@ -37,14 +46,7 @@ useEffect(() => {
         }
     };
 
-    const categories = [
-        { name: 'Biscuit and Snacks', count: 33 },
-        { name: 'Dairy and Beverages', count: 10 },
-        { name: 'Fruits and Vegetables', count: 5 },
-        { name: 'Meats', count: 8 },
-        { name: 'Seafoods', count: 15 },
-        { name: 'Uncategorized', count: 4 },
-    ];
+   
 
     const products = [
         { productImage: shop1, productName: 'Fresh Natural Oranges', rating: 4, discountPrice: 29.00, originalPrice: 50.00 },
@@ -63,9 +65,9 @@ useEffect(() => {
     return (
         <>
             <div className='bg-[#3B5236] flex flex-col justify-center items-center h-96 text-white gap-3 p-10'>
-                <p className='flex font-marcellus text-3xl font-semibold'>Fruits & Vegetables</p>
-                <p className='flex'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, eos. Autem aperiam dicta ad ex.</p>
-                <p className='flex font-nunito text-lg font-semibold'>Home &rarr; Fruits & Vegetables</p>
+                <p className='flex font-marcellus text-3xl font-semibold'>{category.name}</p>
+                <p className='flex'>{category.description}</p>
+                <p className='flex font-nunito text-lg font-semibold'>Home &rarr; {category.name}</p>
             </div>
             <div className="flex md:m-7 lg:m-12 xl:m-28 gap-6 justify-center items-center md:justify-start md:items-start mt-10">
                 <div className={`fixed top-0 left-0 h-full w-2/3 min-w-72 bg-[#F2F2EC] p-5 gap-10 flex flex-col md:rounded-3xl overflow-y-auto transform ${menuOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out z-50 md:static md:w-1/3 md:translate-x-0`}>
@@ -92,7 +94,7 @@ useEffect(() => {
                                     className="flex justify-between items-center text-[#8B8B98] text-sm font-medium mb-2 font-nunito"
                                 >
                                     <span>{category.name}</span>
-                                    <span className="text-gray-400">({category.count})</span>
+                                    <span className="text-gray-400">10</span>
                                 </li>
                             ))}
                         </div>
