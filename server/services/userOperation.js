@@ -14,12 +14,43 @@ const getUserById = async (userId) => {
   return await User.findOne(userId);
 };
 
+const getUserByEmail = async (email) => {
+  try {
+   // console.log("in fun",email)
+   
+    const user = await User.findOne({email:email});
+  
+    return user;
+  } catch (error) {
+    console.error("Error fetching user by email:", error);
+    throw new Error("Unable to fetch user by email. Please try again later.");
+  }
+};
 const getUserByemail = async (email) => {
-  return await User.findOne({ email: email });
+  console.log(email)
+  const emaill = email.email
+  return await User.findOne(emaill);
 };
 
 const getUserByPhone = async (phone) => {
-  return await User.findOne({ phone: phone });
+  try {
+    if (!phone) {
+      throw new Error("Phone number is required.");
+    }
+
+    console.log("Searching for user with phone:", phone);
+
+    const user = await User.findOne({ phone: phone });
+
+    if (!user) {
+      throw new Error("User not found.");
+    }
+
+    return user;
+  } catch (error) {
+    console.error("Error in getUserByPhone:", error.message);
+    return null; // Return null to indicate no user found
+  }
 };
 
 const updateUser = async (userId, userData) => {
@@ -37,5 +68,6 @@ module.exports = {
   updateUser,
   deleteUser,
   getUserByemail,
-  getUserByPhone
+  getUserByPhone,
+  getUserByEmail
 };

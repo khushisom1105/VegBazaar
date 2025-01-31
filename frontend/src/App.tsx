@@ -11,6 +11,7 @@ function app() {
   return (
     
     <>
+    
      <Banner/>
      <FeatureSection/>
      <CategoryGrid/>

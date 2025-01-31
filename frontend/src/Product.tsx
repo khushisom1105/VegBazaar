@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import SliderFilter from './SliderFilter';
-
+import { useLocation } from "react-router-dom";
 import productBanner from './image/Product-banner.webp'
 import leaf from './image/Double-leafs.png'
 import shop1 from './image/shop-img1.jpg'
@@ -16,14 +16,16 @@ import { FaArrowRightLong } from "react-icons/fa6";
 import { useEffect } from 'react';
 import { CiFilter } from 'react-icons/ci';
 
-// useEffect(() => {
-//     return () => {
-//         document.body.style.overflow = "auto"; // Reset scrolling when component unmounts
-//     };
-// }, []);
+
 
 function Product() {
+    const location = useLocation();
+    const category = location.state?.category; 
     const [menuOpen, setMenuOpen] = useState(false);
+
+useEffect(() => {
+   
+}, []);
 
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
