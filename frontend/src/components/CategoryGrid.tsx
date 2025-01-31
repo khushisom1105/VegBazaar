@@ -1,5 +1,8 @@
 // import React from 'react';
 
+import { FaArrowRightLong } from "react-icons/fa6";
+import { Link } from "react-router-dom";
+
 const CategoryGrid = () => {
   const categories = [
     {
@@ -29,7 +32,7 @@ const CategoryGrid = () => {
   ];
 
   return (
-    <div className="mg-category-grid-section py-8">
+    <div className="mg-category-grid-section py-8 font-nunito  mx-7 lg:mx-12 xl:mx-28 2xl:mx-36">
       <div className="container mx-auto px-4">
         <div className="mg-category-outer">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -40,27 +43,21 @@ const CategoryGrid = () => {
                     <img
                       src={category.imageSrc}
                       alt={category.categoryName}
-                      className="w-full h-auto object-cover"
+                      className="w-full h-auto object-cover rounded-3xl"
                     />
                   </div>
-                  <div className={`mg-p-badges absolute top-4 left-4 bg-opacity-80 text-white px-4 py-2 rounded-full ${category.badgeClass}`}>
+                  <div className={`mg-p-badges absolute top-4 left-4 bg-opacity-80 text-white px-4 py-2 bg-red-500 rounded-full ${category.badgeClass}`}>
                     <span>{category.badgeText}</span>
                   </div>
-                  <div className="mg-overlay-text absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 p-4">
-                    <div className="mg-overlay-text-inner text-center text-white">
+                  <div className="mg-overlay-text absolute bottom-0 left-0 p-6">
+                    <div className="mg-overlay-text-inner text-center text-white flex flex-col items-start gap-2">
                       <span className="block text-sm">{category.categoryName}</span>
-                      <h5 className="text-lg font-semibold">{category.description}</h5>
-                      <a
-                        className="btn mg-btn-2 inline-flex items-center justify-center bg-yellow-500 text-white py-2 px-4 rounded mt-4 hover:bg-yellow-600"
-                        href="shop.html"
-                      >
-                        SHOP NOW
-                        <img
-                          src="assets/images/icons/Button-arrow-light.svg"
-                          alt="Arrow"
-                          className="ml-2 w-4 h-4"
-                        />
-                      </a>
+                      <h5 className="text-2xl font-semibold font-marcellus">{category.description}</h5>
+                      <Link to="/product">
+                      <button className='flex items-center justify-center font-nunito text-sm border p-3 px-8 rounded-full gap-2 mt-3 text-white font-semibold hover:bg-[#D3B758]'>
+                        SHOP NOW <FaArrowRightLong />
+                      </button>
+                      </Link>
                     </div>
                   </div>
                 </div>

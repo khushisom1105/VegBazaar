@@ -1,66 +1,63 @@
+import { FaArrowRightLong } from "react-icons/fa6";
 import bannerImg from "../assets/images/banner/banner-img.png";
 import rectangleImg from "../assets/images/gallery/Banner-rectangle-img.jpg";
-import arrowIcon from "/assets/images/icons/Button-arrow-light.svg";
+import { Link } from "react-router-dom";
 
 const Banner = () => {
   return (
-    <div className="flex flex-col lg:flex-row items-center bg-gray-100 py-12 px-6 lg:px-16 xl:px-24 space-y-8 lg:space-y-0">
-      {/* Text Section */}
-      <div className="lg:w-1/2 space-y-6 text-center lg:text-left">
-        <h5 className="text-lg font-semibold text-gray-700">Discount up to 20%</h5>
-        <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900">
-          Buy Fresh And Organic Grocery Food{" "}
-          <span className="inline-block">
-            <img
-              src={rectangleImg}
-              alt="Rectangle Decoration"
-              className="inline-block w-6 sm:w-8 lg:w-10"
-            />
-          </span>
-        </h3>
-        <p className="text-sm sm:text-base lg:text-lg text-gray-600 leading-relaxed">
-          Lorem ipsum dolor sit amet consectetur. Condimentum sed sed blandit
-          purus nec nibh tortor ipsum. Placerat consequat lorem.
-        </p>
-        <div className="flex flex-col lg:flex-row items-center lg:items-start lg:space-x-6 space-y-6 lg:space-y-0">
-          {/* Shop Now Button */}
-          <div>
-            <a
-              href="shop.html"
-              className="bg-green-500 text-white px-6 py-3 rounded-lg inline-flex items-center text-sm sm:text-base font-semibold hover:bg-green-600"
-            >
-              SHOP NOW{" "}
+    <>
+    <div className="flex h-screen font-nunito flex-col sm:flex-row">
+      <div className="flex sm:w-3/5 ">
+        <div className="flex flex-col items-start justify-center sm:w-3/5 m-7 lg:m-12 xl:m-28 2xl:m-36  gap-6">
+          <div className="font-bold text-xl">Discount up to 20%</div>
+          <div className="font-bold text-5xl font-marcellus">Buy Fresh And Organic Grocery Food{" "}
+            <span className="inline-block">
               <img
-                src={arrowIcon}
-                alt="Button Arrow"
-                className="ml-2 w-4 h-4 sm:w-5 sm:h-5"
+                src={rectangleImg}
+                alt="Rectangle Decoration"
+                className="inline-block w-32 rounded-full"
               />
-            </a>
-          </div>
+            </span></div>
+          <div className="text-gray-300 font-bold">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque obcaecati saepe dolor illum, aperiam repudiandae!</div>
+          <div className="flex font-marcellus justify-around items-center w-full">
+            <Link to="/product"><button className='flex items-center justify-center font-nunito text-sm border p-3 px-8 rounded-full gap-2 bg-[#3B5236] text-white font-semibold hover:bg-[#D3B758]'>
+              SHOP NOW <FaArrowRightLong />
+            </button></Link>
 
-          {/* Count Section */}
-          <div className="flex space-x-8 sm:space-x-12">
-            <div className="text-center">
-              <h3 className="text-xl sm:text-2xl font-bold text-gray-900">35k +</h3>
+            <div className="flex flex-col text-center">
+              <h3 className="text-xl sm:text-2xl font-bold text-gray-900">35k+</h3>
               <span className="text-sm sm:text-base text-gray-600">Users</span>
             </div>
-            <div className="text-center">
-              <h3 className="text-xl sm:text-2xl font-bold text-gray-900">18k +</h3>
+            <div className="h-12 w-[2px] bg-gray-400"></div>
+            <div className="flex flex-col text-center">
+              <h3 className="text-xl sm:text-2xl font-bold text-gray-900">18k+</h3>
               <span className="text-sm sm:text-base text-gray-600">Products</span>
             </div>
           </div>
+
         </div>
       </div>
-
-      {/* Image Section */}
-      <div className="lg:w-1/2">
-        <img
-          src={bannerImg}
-          alt="Banner"
-          className="w-full max-w-lg mx-auto lg:mx-0"
-        />
+      <div className="flex sm:w-2/5 sm:bg-[#3B5236] sm:relative">
+        <div className="sm:absolute sm:top-28 sm:-left-48 flex justify-center items-center">
+          <img
+            src={bannerImg}
+            alt="Banner"
+            className="sm:w-11/12 w-1/2"
+          />
+        </div>
       </div>
     </div>
+    <div className="h-16 bg-yellow-400 font-marcellus flex overflow-hidden whitespace-nowrap justify-center items-center">
+  <div className="animate-marquee flex">
+    <span className="mx-4">Discount Up To 20% Off</span>
+    <span className="mx-4">Discount Up To 20% Off</span>
+    <span className="mx-4">Discount Up To 20% Off</span>
+    <span className="mx-4">Discount Up To 20% Off</span>
+    <span className="mx-4">Discount Up To 20% Off</span>
+    <span className="mx-4">Discount Up To 20% Off</span>
+  </div>
+</div>
+    </>
   );
 };
 

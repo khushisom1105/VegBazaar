@@ -8,12 +8,33 @@ import shop2 from './image/shop-img2.jpg'
 import shop3 from './image/shop-img3.jpg'
 import img from './image/side-content-category-img1.jpg'
 // import StarRating from './StarRating'
-import { IoIosSearch } from "react-icons/io";
+import { IoIosSearch, IoMdClose, IoMdMenu } from "react-icons/io";
 import { FaStar } from "react-icons/fa";
 import { IoMdHeartEmpty } from "react-icons/io";
 import { FaArrowRightLong } from "react-icons/fa6";
 
+import { useEffect } from 'react';
+import { CiFilter } from 'react-icons/ci';
+
+// useEffect(() => {
+//     return () => {
+//         document.body.style.overflow = "auto"; // Reset scrolling when component unmounts
+//     };
+// }, []);
+
 function Product() {
+    const [menuOpen, setMenuOpen] = useState(false);
+
+    const toggleMenu = () => {
+        setMenuOpen(!menuOpen);
+
+        if (!menuOpen) {
+            document.body.style.overflow = "hidden"; // Disable scrolling
+        } else {
+            document.body.style.overflow = "auto"; // Enable scrolling
+        }
+    };
+
     const categories = [
         { name: 'Biscuit and Snacks', count: 33 },
         { name: 'Dairy and Beverages', count: 10 },
@@ -39,8 +60,16 @@ function Product() {
 
     return (
         <>
-            <div className="flex m-28 gap-6">
-                <div className="flex flex-col gap-10 bg-[#F2F2EC] h-max w-1/3 p-5 rounded-3xl">
+            <div className='bg-[#3B5236] flex flex-col justify-center items-center h-96 text-white gap-3 p-10'>
+                <p className='flex font-marcellus text-3xl font-semibold'>Fruits & Vegetables</p>
+                <p className='flex'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi, eos. Autem aperiam dicta ad ex.</p>
+                <p className='flex font-nunito text-lg font-semibold'>Home &rarr; Fruits & Vegetables</p>
+            </div>
+            <div className="flex md:m-7 lg:m-12 xl:m-28 gap-6 justify-center items-center md:justify-start md:items-start mt-10">
+                <div className={`fixed top-0 left-0 h-full w-2/3 min-w-72 bg-[#F2F2EC] p-5 gap-10 flex flex-col md:rounded-3xl overflow-y-auto transform ${menuOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out z-50 md:static md:w-1/3 md:translate-x-0`}>
+                    <button className="md:hidden absolute top-5 right-2 p-2 rounded-full" onClick={toggleMenu}>
+                        <IoMdClose size={20} className='text-red-500' />
+                    </button>
                     <div className='flex flex-col w-full gap-4'>
                         <div className='font-marcellus font-semibold text-2xl'>Search Your Product</div>
                         <div className='relative flex items-center'>
@@ -55,9 +84,9 @@ function Product() {
                     <div className='flex flex-col w-full gap-4'>
                         <div className='font-marcellus font-semibold text-2xl'>Product Categories</div>
                         <div className='flex flex-col gap-2'>
-                            {categories.map((category) => (
+                            {categories.map((category, index) => (
                                 <li
-                                    key={category.name}
+                                    key={index}
                                     className="flex justify-between items-center text-[#8B8B98] text-sm font-medium mb-2 font-nunito"
                                 >
                                     <span>{category.name}</span>
@@ -96,22 +125,26 @@ function Product() {
                     </div>
                 </div>
                 <div className="flex flex-col w-2/3 gap-5 relative">
-                    <div className="flex relative rounded-3xl overflow-hidden">
-                        <img src={productBanner} className="object-cover"></img>
+                    <div className="relative rounded-3xl overflow-hidden hidden sm:flex">
+                        <img src={productBanner} className="object-cover w-full"></img>
                         <div className="flex flex-col items-start absolute text-white text-center pt-20 bottom-0 p-10 gap-5">
                             <div className='flex flex-col items-start'>
-                                <p className='font-bold text-xl font-nunito'>You’re what you eat, so</p>
-                                <p className='font-marcellus text-3xl'>Don’t Be Fast, Cheap, Easy Or Fake</p>
+                                <p className='font-bold md:text-lg lg:text-xl font-nunito'>You’re what you eat, so</p>
+                                <p className='font-marcellus text-xl md:text-2xl lg:text-3xl'>Don’t Be Fast, Cheap, Easy Or Fake</p>
                             </div>
                             <button className='flex items-center justify-center font-nunito text-sm border p-3 px-8 rounded-full gap-2 hover:bg-[#D3B758]'>SHOP NOW <FaArrowRightLong /></button>
                         </div>
                     </div>
-                    <img src={leaf} className='absolute -right-12 -top-16 w-16'></img>
-                    <div className="grid grid-cols-3 gap-8">
-                        {products.map((product) => (
-                            <div key={product.productName} className='flex flex-col rounded-2xl border p-3 gap-3'>
+                    <img src={leaf} className='absolute -right-12 -top-16 w-16 hidden sm:block'></img>
+                    <button className="flex justify-center items-center gap-2 md:hidden  bg-[#3B5236] text-white p-2 rounded-full shadow-lg" onClick={toggleMenu}>
+                        <CiFilter size={20} />
+                        <p className='font-nunito font-semibold'>Filter </p>
+                    </button>
+                    <div className="grid lg:grid-cols-3 gap-8 sm:grid-cols-2 grid-cols-1">
+                        {products.map((product, index) => (
+                            <div key={index} className='flex flex-col rounded-2xl border p-3 gap-3'>
                                 <div className='flex justify-center items-center'>
-                                    <img src={product.productImage} className="object-cover rounded-2xl"></img>
+                                    <img src={product.productImage} className="object-cover rounded-2xl w-full"></img>
                                 </div>
                                 <div className='flex flex-col gap-2'>
                                     <p className='font-marcellus font-semibold text-[#313131]'>{product.productName}</p>
@@ -125,8 +158,8 @@ function Product() {
                                         })}
                                     </div>
                                     <div className='flex justify-between items-center'>
-                                        <p className='font-marcellus font-semibold text-lg text-[#3B5236]'>₹{product.discountPrice}</p>
-                                        <p className='font-marcellus font-semibold text-sm text-[#C9CDC2]' style={{ textDecoration: 'line-through' }}>₹{product.originalPrice}</p>
+                                        <p className='font-marcellus font-semibold text-lg text-[#3B5236]'>₹{product.discountPrice.toFixed(2)}</p>
+                                        <p className='font-marcellus font-semibold text-sm text-[#C9CDC2]' style={{ textDecoration: 'line-through' }}>₹{product.originalPrice.toFixed(2)}</p>
                                         <div className='flex items-center h-7 w-7 bg-[#F3EAD7] mr-2 rounded-full'>
                                             <div className="h-7 w-7 inline-flex justify-center items-center"><IoMdHeartEmpty className='w-5 h-5 text-[#3B5236]' /></div>
                                         </div>
