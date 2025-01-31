@@ -1,8 +1,8 @@
 
 function Banner() {
     return (
-    <div className="bg-yellow-300  py-10 font-nunito">
-    <div className=" mx-auto px-4">
+    <div className="bg-yellow-300  py-10 font-nunito ">
+    <div className="px-4 mx-7 lg:mx-12 xl:mx-28 2xl:mx-36 my-10">
       <div className=" flex flex-col justify-center items-center text-center mb-6">
         <span className=" font-semibold text-gray-700">Don't miss out</span>
         <h5 className="text-4xl font-bold  text-gray-800 mt-2 font-marcellus">

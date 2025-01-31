@@ -1,6 +1,7 @@
 import { FaArrowRightLong } from "react-icons/fa6";
 
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const slides = [
   {
@@ -58,9 +59,9 @@ const Banner2 = () => {
         <p className="text-lg text-gray-200 mt-4 max-w-2xl">{slides[currentSlide].description}</p>
 
         {/* Shop Now Button */}
-        <button className='flex items-center justify-center font-nunito text-sm border p-3 px-8 rounded-full gap-2 mt-3 text-white font-semibold hover:bg-[#D3B758]'>
-                                SHOP NOW <FaArrowRightLong />
-                              </button>
+        <Link to="/product"><button className='flex items-center justify-center font-nunito text-sm border p-3 px-8 rounded-full gap-2 mt-3 text-white font-semibold hover:bg-[#D3B758]'>
+          SHOP NOW <FaArrowRightLong />
+        </button></Link>
 
         {/* Pagination (Clickable Dots) */}
         <div className="mt-8 flex gap-2">
@@ -68,9 +69,8 @@ const Banner2 = () => {
             <button
               key={slide.id}
               onClick={() => setCurrentSlide(index)}
-              className={`w-3 h-3 rounded-full transition-all ${
-                currentSlide === index ? "bg-white scale-125" : "bg-gray-400"
-              }`}
+              className={`w-3 h-3 rounded-full transition-all ${currentSlide === index ? "bg-white scale-125" : "bg-gray-400"
+                }`}
             ></button>
           ))}
         </div>
@@ -78,25 +78,25 @@ const Banner2 = () => {
 
       {/* Scrolling Banner */}
       <div className=" absolute bottom-0 h-16 w-full bg-[#3B5236] text-white font-marcellus flex overflow-hidden whitespace-nowrap justify-center items-center">
-  <div className="animate-marquee flex">
-    <span className="mx-4">Discount Up To 20% Off</span>
-    <span>🍃</span>
-    <span className="mx-4">Discount Up To 20% Off</span>
-    <span>🍃</span>
-    <span className="mx-4">Discount Up To 20% Off</span>
-    <span>🍃</span>
-    <span className="mx-4">Discount Up To 20% Off</span>
-    <span>🍃</span>
-    <span className="mx-4">Discount Up To 20% Off</span>
-    <span>🍃</span>
-    <span className="mx-4">Discount Up To 20% Off</span>
-    <span>🍃</span>
-  </div>
-</div>
+        <div className="animate-marquee flex">
+          <span className="mx-4">Discount Up To 20% Off</span>
+          <span>🍃</span>
+          <span className="mx-4">Discount Up To 20% Off</span>
+          <span>🍃</span>
+          <span className="mx-4">Discount Up To 20% Off</span>
+          <span>🍃</span>
+          <span className="mx-4">Discount Up To 20% Off</span>
+          <span>🍃</span>
+          <span className="mx-4">Discount Up To 20% Off</span>
+          <span>🍃</span>
+          <span className="mx-4">Discount Up To 20% Off</span>
+          <span>🍃</span>
+        </div>
+      </div>
     </div>
   );
 };
 
 export default Banner2;
 
-  
+

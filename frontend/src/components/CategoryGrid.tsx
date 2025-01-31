@@ -1,6 +1,7 @@
 // import React from 'react';
 
 import { FaArrowRightLong } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 const CategoryGrid = () => {
   const categories = [
@@ -52,9 +53,11 @@ const CategoryGrid = () => {
                     <div className="mg-overlay-text-inner text-center text-white flex flex-col items-start gap-2">
                       <span className="block text-sm">{category.categoryName}</span>
                       <h5 className="text-2xl font-semibold font-marcellus">{category.description}</h5>
+                      <Link to="/product">
                       <button className='flex items-center justify-center font-nunito text-sm border p-3 px-8 rounded-full gap-2 mt-3 text-white font-semibold hover:bg-[#D3B758]'>
                         SHOP NOW <FaArrowRightLong />
                       </button>
+                      </Link>
                     </div>
                   </div>
                 </div>

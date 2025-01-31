@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { FaArrowRightLong } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 function TabSection() {
 
@@ -109,8 +110,7 @@ function TabSection() {
                           </div>
                           <p className="text-sm text-gray-600 mb-4">{product.description}</p>
                           <div className="text-right">
-                            <button className='flex items-center justify-center font-nunito text-sm border p-3 px-8 rounded-full gap-2 hover:bg-[#D3B758]'>SHOP NOW <FaArrowRightLong /></button>
-
+                          <Link to="/product"><button className='flex items-center justify-center font-nunito text-sm border p-3 px-8 rounded-full gap-2 hover:bg-[#D3B758]'>SHOP NOW <FaArrowRightLong /></button></Link>
                           </div>
                         </div>
                       </div>

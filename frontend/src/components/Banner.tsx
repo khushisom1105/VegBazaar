@@ -1,6 +1,7 @@
 import { FaArrowRightLong } from "react-icons/fa6";
 import bannerImg from "../assets/images/banner/banner-img.png";
 import rectangleImg from "../assets/images/gallery/Banner-rectangle-img.jpg";
+import { Link } from "react-router-dom";
 
 const Banner = () => {
   return (
@@ -19,9 +20,9 @@ const Banner = () => {
             </span></div>
           <div className="text-gray-300 font-bold">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque obcaecati saepe dolor illum, aperiam repudiandae!</div>
           <div className="flex font-marcellus justify-around items-center w-full">
-            <button className='flex items-center justify-center font-nunito text-sm border p-3 px-8 rounded-full gap-2 bg-[#3B5236] text-white font-semibold hover:bg-[#D3B758]'>
+            <Link to="/product"><button className='flex items-center justify-center font-nunito text-sm border p-3 px-8 rounded-full gap-2 bg-[#3B5236] text-white font-semibold hover:bg-[#D3B758]'>
               SHOP NOW <FaArrowRightLong />
-            </button>
+            </button></Link>
 
             <div className="flex flex-col text-center">
               <h3 className="text-xl sm:text-2xl font-bold text-gray-900">35k+</h3>
