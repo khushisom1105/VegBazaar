@@ -72,16 +72,16 @@ const callsToAction = [
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
-  const [categories,setCategories] = useState([]);
+  const [categories, setCategories] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const getCategories=async()=>{
+    const getCategories = async () => {
       const res = await axios.get("http://localhost:4007/category/fetch");
       setCategories(res.data.categories);
     }
     getCategories();
-  }, []);
+  }, []);
 
   return (
     <header className="bg-[#3B5236] backdrop-blur text-white">
@@ -110,38 +110,45 @@ export default function Navbar() {
             Home
           </a>
           <Popover className="relative">
-            <PopoverButton className="flex items-center gap-x-1 text-sm/6 font-semibold outline-none focus:ring-0">
-              Grocery
-              <ChevronDownIcon
-                aria-hidden="true"
-                className="size-5 flex-none text-gray-400"
-              />
-            </PopoverButton>
+            {({ open, close }) => ( // Destructure 'close' from Popover
+              <>
+                <PopoverButton className="flex items-center gap-x-1 text-sm/6 font-semibold outline-none focus:ring-0">
+                  Grocery
+                  <ChevronDownIcon
+                    aria-hidden="true"
+                    className="size-5 flex-none text-gray-400"
+                  />
+                </PopoverButton>
 
-            <PopoverPanel
-              transition
-              className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-xs overflow-hidden rounded-3xl bg-white/70 backdrop-blur shadow-lg ring-gray-900/5 transition data-[closed]:translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in"
-            >
-              <div className="p-4">
-                {categories.map((item) => (
-                  <div
-                    key={item.name}
-                    className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm/6 hover:bg-[#C9CDC2]"
-                  >
-
-                    <div className="flex-auto">
-                      <button 
-                             onClick={() => navigate("/product", { state: { category:item } })}
-                             className="block font-semibold text-gray-900">
-                             {item.name}
-                      </button>
-                     
-                    </div>
+                <PopoverPanel
+                  transition
+                  className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-xs overflow-hidden rounded-3xl bg-white/70 backdrop-blur shadow-lg ring-gray-900/5 transition data-[closed]:translate-y-1 data-[closed]:opacity-0 data-[enter]:duration-200 data-[leave]:duration-150 data-[enter]:ease-out data-[leave]:ease-in"
+                >
+                  <div className="p-4">
+                    {categories.map((item) => (
+                      <div
+                        key={item.name}
+                        className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm/6 hover:bg-[#C9CDC2]"
+                      >
+                        <div className="flex-auto">
+                          <button
+                            onClick={() => {
+                              navigate("/product", { state: { category: item } });
+                              close(); // Close dropdown on click
+                            }}
+                            className="block font-semibold text-gray-900"
+                          >
+                            {item.name}
+                          </button>
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
-            </PopoverPanel>
+                </PopoverPanel>
+              </>
+            )}
           </Popover>
+
 
           <a href="#" className="text-sm/6 font-semibold">
             Contact Us
@@ -159,7 +166,7 @@ export default function Navbar() {
               Sign Up <span aria-hidden="true">&rarr;</span>
             </a>
             <a href="/wishlist" className="text-sm/6 font-semibold p-2 rounded-full border border-white">
-            <IoMdHeartEmpty size={20} /> <span aria-hidden="true"></span>
+              <IoMdHeartEmpty size={20} /> <span aria-hidden="true"></span>
             </a>
             {/* <button onClick={handleCartClick}>Cart</button>
             {cartOpen && (
