@@ -15,26 +15,50 @@ import { FaArrowRightLong } from "react-icons/fa6";
 import axios from "axios";
 import { useEffect } from 'react';
 import { CiFilter } from 'react-icons/ci';
-
+import { useNavigate } from "react-router-dom";
 
 
 function Product() {
+    const navigate = useNavigate();
     const location = useLocation();
-    const category = location.state?.category; 
+    const category = location.state?.category;
     const [menuOpen, setMenuOpen] = useState(false);
     const [categories, setCategories] = useState([]);
-useEffect(() => {
-  
-      fetchCategories();
-}, []);
-const fetchCategories = async () => {
-    try {
-      const response = await axios.get("http://localhost:4007/category/fetch");
-      setCategories(response.data.categories);
-    } catch (error) {
-      console.error("Error fetching categories:", error);
-    }
-  };
+    const [products, setProducts] = useState([]);
+    useEffect(() => {
+
+        window.scrollTo(0, 0); // Scroll to the top when the page loads
+        fetchCategories();
+        fetchProducts();
+    }, []);
+
+    const fetchProducts = async () => {
+        try {
+            const response = await axios.get("http://localhost:4007/products");
+            if(category === "all"){
+                setProducts(response.data.products);
+            }
+            else{
+                const filteredProducts = response.data.products.filter(
+                    (product) => product.category._id === category?._id
+                );
+                setProducts(filteredProducts);
+            }
+           
+           
+        } catch (error) {
+            console.error("Error fetching categories:", error);
+        }
+    };
+
+    const fetchCategories = async () => {
+        try {
+            const response = await axios.get("http://localhost:4007/category/fetch");
+            setCategories(response.data.categories);
+        } catch (error) {
+            console.error("Error fetching categories:", error);
+        }
+    };
 
     const toggleMenu = () => {
         setMenuOpen(!menuOpen);
@@ -46,27 +70,15 @@ const fetchCategories = async () => {
         }
     };
 
-   
 
-    const products = [
-        { productImage: shop1, productName: 'Fresh Natural Oranges', rating: 4, discountPrice: 29.00, originalPrice: 50.00 },
-        { productImage: shop2, productName: 'Organic Cabbage (1 Pc)', rating: 3, discountPrice: 54.00, originalPrice: 79.00 },
-        { productImage: shop3, productName: 'Red Apple Envy (6 pc)', rating: 4, discountPrice: 99.00, originalPrice: 120.00 },
-        { productImage: shop1, productName: 'Fresh Natural Oranges', rating: 4, discountPrice: 29.00, originalPrice: 50.00 },
-        { productImage: shop2, productName: 'Organic Cabbage (1 Pc)', rating: 3, discountPrice: 54.00, originalPrice: 79.00 },
-        { productImage: shop3, productName: 'Red Apple Envy (6 pc)', rating: 4, discountPrice: 99.00, originalPrice: 120.00 },
-        { productImage: shop1, productName: 'Fresh Natural Oranges', rating: 4, discountPrice: 29.00, originalPrice: 50.00 },
-        { productImage: shop2, productName: 'Organic Cabbage (1 Pc)', rating: 3, discountPrice: 54.00, originalPrice: 79.00 },
-        { productImage: shop3, productName: 'Red Apple Envy (6 pc)', rating: 4, discountPrice: 99.00, originalPrice: 120.00 },
-    ];
 
-    const firstThreeProducts = products.slice(0, 3);
+    // const firstThreeProducts = products.slice(0, 3);
 
     return (
         <>
             <div className='bg-[#3B5236] flex flex-col justify-center items-center h-96 text-white gap-3 p-10'>
-                <p className='flex font-marcellus text-3xl font-semibold'>{category.name}</p>
-                <p className='flex'>{category.description}</p>
+                <p className='flex font-marcellus text-3xl font-semibold'>{category === "all" ? "All Products" : category.name}</p>
+                <p className='flex'>{category === "all" ? "Browse All Products Here" : category.description}</p>
                 <p className='flex font-nunito text-lg font-semibold'>Home &rarr; {category.name}</p>
             </div>
             <div className="flex md:m-7 lg:m-12 xl:m-28 gap-6 justify-center items-center md:justify-start md:items-start mt-10">
@@ -105,7 +117,7 @@ const fetchCategories = async () => {
                     </div>
                     <div className='flex flex-col w-full gap-4'>
                         <div className='font-marcellus font-semibold text-2xl'>Products</div>
-                        {firstThreeProducts.map((product, index) => (
+                        {/* {firstThreeProducts.map((product, index) => (
                             <div className='flex gap-5' key={index}>
                                 <div className='flex justify-center items-center'>
                                     <img src={product.productImage} className="object-cover rounded-xl h-20 w-20"></img>
@@ -115,7 +127,7 @@ const fetchCategories = async () => {
                                     <div className='font-marcellus font-bold text-[#3B5236] text-lg'>₹{product.discountPrice}</div>
                                 </div>
                             </div>
-                        ))}
+                        ))} */}
                     </div>
                     <div className='flex justify-center items-center relative'>
                         <img src={img} className="object-cover rounded-3xl"></img>
@@ -145,13 +157,14 @@ const fetchCategories = async () => {
                         <p className='font-nunito font-semibold'>Filter </p>
                     </button>
                     <div className="grid lg:grid-cols-3 gap-8 sm:grid-cols-2 grid-cols-1">
-                        {products.map((product, index) => (
-                            <div key={index} className='flex flex-col rounded-2xl border p-3 gap-3'>
+                        {products.map((product) => (
+                            <div key={product._id} className='flex flex-col rounded-2xl border p-3 gap-3'
+                                onClick={() => navigate("/product-detail", { state: { product } })}>
                                 <div className='flex justify-center items-center'>
-                                    <img src={product.productImage} className="object-cover rounded-2xl w-full"></img>
+                                    <img src={product.images} className="object-cover rounded-2xl w-full h-32"></img>
                                 </div>
                                 <div className='flex flex-col gap-2'>
-                                    <p className='font-marcellus font-semibold text-[#313131]'>{product.productName}</p>
+                                    <p className='font-marcellus font-semibold text-[#313131]'>{product.name}</p>
                                     <div className="flex space-x-1">
                                         {[...Array(5)].map((_) => {
                                             return (
@@ -162,8 +175,8 @@ const fetchCategories = async () => {
                                         })}
                                     </div>
                                     <div className='flex justify-between items-center'>
-                                        <p className='font-marcellus font-semibold text-lg text-[#3B5236]'>₹{product.discountPrice.toFixed(2)}</p>
-                                        <p className='font-marcellus font-semibold text-sm text-[#C9CDC2]' style={{ textDecoration: 'line-through' }}>₹{product.originalPrice.toFixed(2)}</p>
+                                        <p className='font-marcellus font-semibold text-lg text-[#3B5236]'>₹{product.price.toFixed(2)}</p>
+                                        <p className='font-marcellus font-semibold text-sm text-[#C9CDC2]' style={{ textDecoration: 'line-through' }}>₹{product.price.toFixed(2)}</p>
                                         <div className='flex items-center h-7 w-7 bg-[#F3EAD7] mr-2 rounded-full'>
                                             <div className="h-7 w-7 inline-flex justify-center items-center"><IoMdHeartEmpty className='w-5 h-5 text-[#3B5236]' /></div>
                                         </div>
