@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import pic1 from './image/shop-img1.jpg'
+import { FaArrowRightLong } from 'react-icons/fa6';
+import { Link } from 'react-router-dom';
 
 function Checkout() {
   const [quantity, setQuantity] = useState(1);
@@ -73,7 +75,15 @@ function Checkout() {
               />
               UPI
             </label>
+            {paymentMethod === "upi" && (
+              <div className="space-y-2 mt-2">
+                <input type="text" placeholder="Enter UPI ID" className="w-full p-3 border rounded-md" />
+              </div>
+            )}
           </div>
+          <Link to="/product"><button className='flex items-center justify-center font-nunito text-sm border p-3 px-8 w-full rounded-full gap-2 my-5 bg-[#3B5236] text-white font-semibold hover:bg-[#D3B758]'>
+              PLACE ORDER 
+            </button></Link>
         </form>
       </div>
 
