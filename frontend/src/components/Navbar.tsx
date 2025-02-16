@@ -72,16 +72,44 @@ const callsToAction = [
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
+  const [cartItems, setCartItems] = useState(5); // State for cart count
+  const [wishItems, setWishItems] = useState(3); // State for cart count
   const [categories, setCategories] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
+    // Fetch categories
     const getCategories = async () => {
       const res = await axios.get("http://localhost:4007/category/fetch");
       setCategories(res.data.categories);
-    }
+    };
     getCategories();
+
+    // Fetch cart items count (Assuming an API call or localStorage)
+    const fetchCartCount = async () => {
+      try {
+        const res = await axios.get("http://localhost:4007/cart/fetch");
+        setCartItems(res.data.totalItems); // Assuming API returns { totalItems: number }
+      } catch (error) {
+        console.error("Error fetching cart count:", error);
+      }
+    };
+
+    fetchCartCount();
+
+// Fetch wishlist items count
+    const fetchWishCount = async () => {
+      try {
+        const res = await axios.get("http://localhost:4007/wishlist/fetch");
+        setWishItems(res.data.totalItems); // Assuming API returns { totalItems: number }
+      } catch (error) {
+        console.error("Error fetching wishlist count:", error);
+      }
+    };
+
+    fetchWishCount();
   }, []);
+
 
   return (
     <header className="bg-[#3B5236] backdrop-blur text-white">
@@ -165,8 +193,13 @@ export default function Navbar() {
             <a href="/signUp" className="text-sm/6 font-semibold">
               Sign Up <span aria-hidden="true">&rarr;</span>
             </a>
-            <a href="/wishlist" className="text-sm/6 font-semibold p-2 rounded-full border border-white">
+            <a href="/wishlist" className="relative text-sm/6 font-semibold p-2 rounded-full border border-white">
               <IoMdHeartEmpty size={20} /> <span aria-hidden="true"></span>
+              {wishItems > 0 && (
+                <span className="absolute -top-1 -right-1 bg-red-600 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
+                  {wishItems}
+                </span>
+              )}
             </a>
             {/* <button onClick={handleCartClick}>Cart</button>
             {cartOpen && (
@@ -175,11 +208,24 @@ export default function Navbar() {
               </div>
             )} */}
 
-            <button onClick={() => setCartOpen(true)} className="p-2 rounded-full border border-white"><IoCartOutline size={20} /></button>
+            {/* <button onClick={() => setCartOpen(true)} className="p-2 rounded-full border border-white"><IoCartOutline size={20} /></button> */}
+            <button
+              onClick={() => setCartOpen(true)}
+              className="relative p-2 rounded-full border border-white"
+            >
+              <IoCartOutline size={20} />
+              {cartItems > 0 && (
+                <span className="absolute -top-1 -right-1 bg-red-600 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
+                  {cartItems}
+                </span>
+              )}
+            </button>
             <Cart isOpen={cartOpen} closeCart={() => setCartOpen(false)} />
           </div>
         </div>
       </nav>
+
+
       <Dialog
         open={mobileMenuOpen}
         onClose={setMobileMenuOpen}
@@ -219,12 +265,17 @@ export default function Navbar() {
                     />
                   </DisclosureButton>
                   <DisclosurePanel className="mt-2 space-y-2">
-                    {[...products, ...callsToAction].map((item) => (
+                  {categories.map((item) => (
                       <DisclosureButton
                         key={item.name}
                         as="a"
                         href={item.href}
                         className="block rounded-lg py-2 pl-6 pr-3 text-sm/7 font-semibold text-gray-900 hover:bg-gray-50"
+                        onClick={() => {
+                          navigate("/product", { state: { category: item } });
+                          close(); // Close dropdown on click
+                          setMobileMenuOpen(false);
+                        }}
                       >
                         {item.name}
                       </DisclosureButton>
@@ -260,15 +311,29 @@ export default function Navbar() {
                 </a>
                 <a
                   href="/wishlist"
-                  className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
+                  className="-mx-3 rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50 flex justify-between items-center"
                 >
                   Wishlist
+                  {wishItems > 0 && (
+                      <span className=" bg-red-600 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
+                        {wishItems}
+                      </span>
+                    )}
                 </a>
                 <a
                   href="#"
                   className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
                 >
-                  <button onClick={() => setCartOpen(true)}>Cart</button>
+                  <div className="flex flex-col ">
+                  <button onClick={() => setCartOpen(true)} className="flex justify-between items-center">
+                    <span>Cart</span>
+                    {cartItems > 0 && (
+                      <span className=" bg-red-600 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
+                        {cartItems}
+                      </span>
+                    )}
+                    </button>
+                    </div>
                   <Cart isOpen={cartOpen} closeCart={() => setCartOpen(false)} />
                 </a>
               </div>
