@@ -7,7 +7,7 @@ const upload = multer({ dest: "uploads/" }); // Temporary file storage for Multe
 // Create a new product
 const createProductController = async (req, res) => {
   try {
-    const { name, description, price, category, status, discount } = req.body;
+    const { name, description, price, category, status, discount ,type_quantity } = req.body;
 
     if (!name || !price || !category) {
       return res.status(400).json({ message: "Name, price, and category are required." });
@@ -31,7 +31,9 @@ const createProductController = async (req, res) => {
       category,
       images: imageUrl,
       status: status || "active",
+      type_quantity : type_quantity || "Kilogram",
       discount: discount || 0,
+
     };
 
     const newProduct = await productServices.createProduct(productData);
@@ -50,9 +52,9 @@ const createProductController = async (req, res) => {
 const updateProductController = async (req, res) => {
   try {
     const { productId } = req.params;
-    const { name, description, price, category, status, discount } = req.body;
+    const { name, description, price, category, status, discount ,type_quantity } = req.body;
 
-    if (!name && !description && !price && !category && !status && !discount && !req.file) {
+    if (!name && !description && !price && !category && !status && !discount && !req.file && type_quantity) {
       return res.status(400).json({ message: "At least one field must be provided to update." });
     }
 
@@ -73,6 +75,7 @@ const updateProductController = async (req, res) => {
       ...(price && { price }),
       ...(category && { category }),
       ...(status && { status }),
+      ...(type_quantity && { type_quantity }),
       ...(discount && { discount }),
       ...(imageUrl && { images: imageUrl }), // Add image only if uploaded
     };

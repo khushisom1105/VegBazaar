@@ -34,6 +34,11 @@ const productSchema = new mongoose.Schema({
     enum: ['active', 'inactive', 'discontinued'],  // Enum for product status
     default: 'active'
   },
+  type_quantity:{
+    type:String,
+    enum:['Gram','Kilogram','Piece','Milliliter','Liter'],
+    default:'Kilogram'
+  },
   discount:{
     type: Number,
     default: 0
