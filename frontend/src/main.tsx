@@ -12,6 +12,7 @@ import Checkout from './Checkout.tsx'
 import Navbar from './components/Navbar.tsx'
 import Login from './login.tsx'
 import SignUp from './signUp.tsx'
+import Detail from './viewProductDetail.tsx'
 
 
 createRoot(document.getElementById('root')!).render(
@@ -28,6 +29,7 @@ createRoot(document.getElementById('root')!).render(
                 <Route path="/wishlist" element={<Wishlist />} />
                 <Route path="/checkout" element={<Checkout />} />
                 <Route path="/login" element={<Login />} />
+                <Route path="/product-detail" element={<Detail />} />
                 <Route path="/signUp" element={<SignUp />} />
             </Routes>
         </Router>

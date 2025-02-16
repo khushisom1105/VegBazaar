@@ -36,9 +36,9 @@ const CategoryGrid = () => {
                     />
                     <div className="absolute inset-0 bg-black opacity-40 rounded-3xl"></div>
                   </div>
-                  <div className={`mg-p-badges absolute top-4 left-4 bg-opacity-80 text-white px-4 py-2 bg-red-500 rounded-full ${category.badgeClass}`}>
+                  {/* <div className={`mg-p-badges absolute top-4 left-4 bg-opacity-80 text-white px-4 py-2 bg-red-500 rounded-full ${category.badgeClass}`}>
                     <span>{category.name}</span>
-                  </div>
+                  </div> */}
                   <div className="mg-overlay-text absolute bottom-0 left-0 p-6">
                     <div className="mg-overlay-text-inner text-center text-white flex flex-col items-start gap-2">
                       <span className="block text-sm">{category.description}</span>
