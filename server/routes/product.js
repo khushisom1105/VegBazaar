@@ -9,10 +9,26 @@ const {
   uploadImage,
 } = require("../controllers/product");
 
-router.post("/", uploadImage, createProductController);
-router.get("/", getAllProductsController);
-router.get("/:productId", getProductByIdController);
-router.put("/:productId", uploadImage, updateProductController);
-router.delete("/:productId", deleteProductController);
+const {
+  getCart,
+  addToCart,
+  updateCartQuantity,
+  removeFromCart,
+  clearCart
+} = require("../controllers/cart");
+
+// ✅ Product Routes
+router.post("/products", uploadImage, createProductController);
+router.get("/products", getAllProductsController);
+router.get("/products/:productId", getProductByIdController);
+router.put("/products/:productId", uploadImage, updateProductController);
+router.delete("/products/:productId", deleteProductController);
+
+// ✅ Cart Routes
+router.get("/cart", getCart);
+router.post("/cart/add", addToCart);
+router.put("/cart/update", updateCartQuantity);
+router.delete("/cart/remove", removeFromCart);
+router.delete("/cart/clear", clearCart);
 
 module.exports = router;

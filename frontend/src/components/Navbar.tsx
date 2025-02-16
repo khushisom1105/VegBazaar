@@ -168,7 +168,9 @@ export default function Navbar() {
               </div>
             )} */}
 
-            <button onClick={() => setCartOpen(true)} className="p-2 rounded-full border border-white"><IoCartOutline size={20} /></button>
+            <button onClick={() => {               
+               setCartOpen(true)}
+               } className="p-2 rounded-full border border-white"><IoCartOutline size={20} /></button>
             <Cart isOpen={cartOpen} closeCart={() => setCartOpen(false)} />
           </div>
         </div>

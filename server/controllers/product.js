@@ -7,7 +7,7 @@ const upload = multer({ dest: "uploads/" }); // Temporary file storage for Multe
 // Create a new product
 const createProductController = async (req, res) => {
   try {
-    const { name, description, price, category, status, discount ,type_quantity } = req.body;
+    const { name, description, price, category, status, discount ,type_quantity,stock } = req.body;
 
     if (!name || !price || !category) {
       return res.status(400).json({ message: "Name, price, and category are required." });
@@ -33,7 +33,7 @@ const createProductController = async (req, res) => {
       status: status || "active",
       type_quantity : type_quantity || "Kilogram",
       discount: discount || 0,
-
+      stock
     };
 
     const newProduct = await productServices.createProduct(productData);
@@ -76,6 +76,7 @@ const updateProductController = async (req, res) => {
       ...(category && { category }),
       ...(status && { status }),
       ...(type_quantity && { type_quantity }),
+      ...(stock && { stock }),
       ...(discount && { discount }),
       ...(imageUrl && { images: imageUrl }), // Add image only if uploaded
     };
