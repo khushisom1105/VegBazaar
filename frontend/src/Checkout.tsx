@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import pic1 from './image/shop-img1.jpg'
-import { FaArrowRightLong } from 'react-icons/fa6';
+
 import { Link } from 'react-router-dom';
 
 function Checkout() {

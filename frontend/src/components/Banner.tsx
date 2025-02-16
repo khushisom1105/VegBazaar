@@ -1,7 +1,6 @@
 import { FaArrowRightLong } from "react-icons/fa6";
 import bannerImg from "../assets/images/banner/banner-img.png";
 import rectangleImg from "../assets/images/gallery/Banner-rectangle-img.jpg";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 const Banner = () => {
