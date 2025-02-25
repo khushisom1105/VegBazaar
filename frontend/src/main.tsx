@@ -4,7 +4,7 @@ import './index.css'
 import App from './App.tsx'
 import Product from './Product.tsx'
 
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 // import BannerD from './homepage/banner.tsx'
 import Footer from './homepage/footer.tsx'
 import Wishlist from './Wishlist.tsx'
@@ -13,6 +13,7 @@ import Navbar from './components/Navbar.tsx'
 import Login from './login.tsx'
 import SignUp from './signUp.tsx'
 import Detail from './viewProductDetail.tsx'
+import Profile from './Profile.tsx'
 
 
 createRoot(document.getElementById('root')!).render(
@@ -31,6 +32,7 @@ createRoot(document.getElementById('root')!).render(
                 <Route path="/login" element={<Login />} />
                 <Route path="/product-detail" element={<Detail />} />
                 <Route path="/signUp" element={<SignUp />} />
+                <Route path="/profile" element={<Profile />} />
             </Routes>
         </Router>
     <Footer />

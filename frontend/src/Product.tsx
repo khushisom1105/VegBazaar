@@ -77,7 +77,7 @@ function Product() {
     return (
         <>
             <div className='bg-[#3B5236] flex flex-col justify-center items-center h-96 text-white gap-3 p-10'>
-                <p className='flex font-marcellus text-3xl font-semibold'>{category === "all" ? "All Products" : category.name}</p>
+                <p className='flex font-marcellus text-4xl font-semibold'>{category === "all" ? "All Products" : category.name}</p>
                 <p className='flex'>{category === "all" ? "Browse All Products Here" : category.description}</p>
                 <p className='flex font-nunito text-lg font-semibold'>Home &rarr; {category.name}</p>
             </div>
