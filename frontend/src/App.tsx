@@ -1,6 +1,7 @@
 import Banner from "./components/Banner";
 import Banner2 from "./components/Banner2.tsx";
 import CategoryGrid from "./components/CategoryGrid";
+import ChatBox from "./components/Chatbox.tsx";
 import FeatureSection from "./components/FeatureSection";
 import ProductCarousel from "./components/ProductCarousel.tsx";
 import TabSection from "./components/TabSection";
@@ -21,6 +22,7 @@ function app() {
      <Banner2/>
      <ProductCarousel/>
      <BannerD/>
+     <ChatBox/>
     </>
     
   )
