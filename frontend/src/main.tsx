@@ -14,6 +14,8 @@ import Login from './login.tsx'
 import SignUp from './signUp.tsx'
 import Detail from './viewProductDetail.tsx'
 import Profile from './Profile.tsx'
+import PageNotFound from './PageNotFound.tsx'
+import FAQ from './FAQ.tsx'
 
 
 createRoot(document.getElementById('root')!).render(
@@ -33,6 +35,8 @@ createRoot(document.getElementById('root')!).render(
                 <Route path="/product-detail" element={<Detail />} />
                 <Route path="/signUp" element={<SignUp />} />
                 <Route path="/profile" element={<Profile />} />
+                <Route path="/*" element={<PageNotFound />} />
+                <Route path="/faq" element={<FAQ />} />
             </Routes>
         </Router>
     <Footer />
