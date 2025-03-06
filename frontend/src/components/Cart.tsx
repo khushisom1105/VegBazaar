@@ -45,8 +45,9 @@ const Cart: React.FC<CartProps> = ({ isOpen, closeCart }) => {
 
   const removeItem = (productId: string) => {
     const updatedCart = cartItems.filter(item => item.productId !== productId);
-    setCartItems(updatedCart);
     localStorage.setItem("cart", JSON.stringify(updatedCart));
+    setCartItems(updatedCart);
+    window.dispatchEvent(new Event("cartUpdated"));
   };
 
   const subtotal = cartItems.reduce((total, item) => total + ((item.price || 0) * (item.quantity || 0)), 0);
