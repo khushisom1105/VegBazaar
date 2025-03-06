@@ -16,6 +16,7 @@ import Detail from './viewProductDetail.tsx'
 import Profile from './Profile.tsx'
 import PageNotFound from './PageNotFound.tsx'
 import FAQ from './FAQ.tsx'
+import MyAccount from './MyAccount.tsx'
 
 
 createRoot(document.getElementById('root')!).render(
@@ -37,6 +38,7 @@ createRoot(document.getElementById('root')!).render(
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/*" element={<PageNotFound />} />
                 <Route path="/faq" element={<FAQ />} />
+                <Route path="/myaccount" element={<MyAccount />} />
             </Routes>
         </Router>
     <Footer />
