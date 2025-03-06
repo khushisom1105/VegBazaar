@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { IoIosSearch } from "react-icons/io";
 import { FiMenu, FiX } from "react-icons/fi"; // Icons for mobile menu toggle
 import img1 from "./image/shop-img1.jpg";
 import img2 from "./image/shop-img2.jpg";
@@ -14,17 +13,6 @@ const MyAccount = () => {
     { id: 2, name: "Organic Cabbage (1 Pc)", qty: 3, price: 80.0, date: "Mar 7, 2025", rating: 5, image: img2 },
     { id: 3, name: "Red Apple Envy (6 pc)", qty: 1, price: 100.0, date: "Mar 7, 2025", rating: 5, image: img3 },
   ];
-
-  // const addresses = [
-  //   { id: 1, address: "123 Main St, New York, NY, USA" },
-  //   { id: 2, address: "456 Maple Ave, Los Angeles, CA, USA" },
-  // ];
-
-  const accountDetails = {
-    name: "Jonathan Smith",
-    email: "jonathansmith@gmail.com",
-    phone: "+1 234 567 890",
-  };
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -191,12 +179,6 @@ const MyAccount = () => {
 
           {/* Account Details */}
           {activeTab === "account" && (
-            // <div>
-            //   <h2 className="text-xl font-bold mb-4">Account Details</h2>
-            //   <p className="text-gray-700"><strong>Name:</strong> {accountDetails.name}</p>
-            //   <p className="text-gray-700"><strong>Email:</strong> {accountDetails.email}</p>
-            //   <p className="text-gray-700"><strong>Phone:</strong> {accountDetails.phone}</p>
-            // </div>
             <div className="w-full max-w-2xl mx-auto p-4 md:p-6 lg:p-8">
               {/* Title */}
               <h2 className="text-2xl font-semibold text-[#3B5236] mb-4 font-marcellus">Personal Information</h2>
