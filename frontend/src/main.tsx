@@ -17,7 +17,6 @@ import Profile from './Profile.tsx'
 import PageNotFound from './PageNotFound.tsx'
 import FAQ from './FAQ.tsx'
 import MyAccount from './MyAccount.tsx'
-import PrivacyPolicy from './PrivacyPolicy.tsx'
 import MyOrder from './MyOrder.tsx'
 
 

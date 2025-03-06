@@ -51,8 +51,6 @@ const MyAccount = () => {
     setAddresses(addresses.filter((addr) => addr.id !== id));
   };
 
-  const [isEditing, setIsEditing] = useState(false);
-
   return (
     <>
       {/* Header */}
