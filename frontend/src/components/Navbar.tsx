@@ -28,12 +28,30 @@ import { IoCartOutline } from "react-icons/io5";
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
-  const [cartItems, setCartItems] = useState(5); // State for cart count
+  const [cartItems, setCartItems] = useState(localStorage.getItem("cart")?.length); // State for cart count
   const [wishItems, setWishItems] = useState(3); // State for cart count
   const [categories, setCategories] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
+    const updateCartCount = () => {
+      let arrCart = localStorage.getItem("cart");
+      let cart = arrCart ? JSON.parse(arrCart) : [];
+      setCartItems(cart.length);
+    };
+
+    updateCartCount();
+    window.addEventListener("storage", updateCartCount);
+    window.addEventListener("cartUpdated", updateCartCount);
+
+    return () => {
+      window.removeEventListener("storage", updateCartCount);
+      window.addEventListener("cartUpdated", updateCartCount);
+    };
+  }, []);
+
+  useEffect(() => {
+
     // Fetch categories
     const getCategories = async () => {
       const res = await axios.get("http://localhost:4007/category/fetch");
@@ -53,6 +71,7 @@ export default function Navbar() {
 
     fetchCartCount();
 
+    // Fetch wishlist items count
     // Fetch wishlist items count
     const fetchWishCount = async () => {
       try {
@@ -170,10 +189,17 @@ export default function Navbar() {
               </div>
             )} */}
 
-            <button onClick={() => {
-              setCartOpen(true)
-            }
-            } className="p-2 rounded-full border border-white"><IoCartOutline size={20} /></button>
+            <button
+              onClick={() => setCartOpen(true)}
+              className="relative p-2 rounded-full border border-white"
+            >
+              <IoCartOutline size={20} />
+              {cartItems > 0 && (
+                <span className="absolute -top-1 -right-1 bg-red-600 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
+                  {cartItems}
+                </span>
+              )}
+            </button>
             <Cart isOpen={cartOpen} closeCart={() => setCartOpen(false)} />
           </div>
         </div>
@@ -219,7 +245,7 @@ export default function Navbar() {
                     />
                   </DisclosureButton>
                   <DisclosurePanel className="mt-2 space-y-2">
-                    {categories.map((item) => (
+                      {categories.map((item) => (
                       <DisclosureButton
                         key={item.name}
                         as="a"
@@ -279,13 +305,13 @@ export default function Navbar() {
                   className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
                 >
                   <div className="flex flex-col ">
-                    <button onClick={() => setCartOpen(true)} className="flex justify-between items-center">
-                      <span>Cart</span>
-                      {cartItems > 0 && (
-                        <span className=" bg-red-600 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
-                          {cartItems}
-                        </span>
-                      )}
+                      <button onClick={() => setCartOpen(true)} className="flex justify-between items-center">
+                        <span>Cart</span>
+                        {cartItems > 0 && (
+                          <span className=" bg-red-600 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
+                            {cartItems}
+                          </span>
+                        )}
                     </button>
                   </div>
                   <Cart isOpen={cartOpen} closeCart={() => setCartOpen(false)} />

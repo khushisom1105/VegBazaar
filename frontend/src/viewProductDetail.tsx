@@ -45,6 +45,7 @@ const ViewProductDetail = () => {
     }
 
     localStorage.setItem("cart", JSON.stringify(cart));
+    window.dispatchEvent(new Event("storage"));
     alert("Added to Cart");
   };
 
