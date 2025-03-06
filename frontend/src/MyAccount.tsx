@@ -43,7 +43,8 @@ const MyAccount = () => {
   
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    localStorage.removeItem("userToken")
     window.location.href = "/login";
   };
 

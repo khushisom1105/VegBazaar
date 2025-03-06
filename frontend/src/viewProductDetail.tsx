@@ -25,8 +25,12 @@ const ViewProductDetail = () => {
 
   // Handle Add to Cart functionality (Frontend Only)
   const handleAddToCart = () => {
+    if(!localStorage.getItem('user')){
+      alert("Please Login First")
+      return
+    }
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
-
+  
     const cartItem = {
       productId: product._id,
       name: product.name,

@@ -40,6 +40,10 @@ const Checkout: React.FC = () => {
   };
  const navigate = useNavigate()
   const handleSubmit = async (e: React.FormEvent) => {
+    if(!localStorage.getItem('user')){
+      alert("Please Login First")
+      return
+    }else{
     e.preventDefault();
     let user = localStorage.getItem("user");
     user = JSON.parse(user);
@@ -80,10 +84,10 @@ const Checkout: React.FC = () => {
       alert("Order placed successfully!");
       localStorage.removeItem("cart");
       setCartItems([]);
-      navigate("/myorders")
+      navigate("/myorder")
     } catch (error) {
       alert("Failed to place order: " + error.response?.data?.message || error.message);
-    }
+    }}
   };
   
   

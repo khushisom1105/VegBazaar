@@ -292,6 +292,8 @@ const SignUpPage: React.FC = () => {
             Sign Up
           </button>
         </form>
+        <center>  Already have an account <a href ="/login" className="color-blue-200">Login</a></center>
+     
       </div>
     </div>
   );

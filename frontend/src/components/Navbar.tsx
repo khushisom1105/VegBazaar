@@ -168,12 +168,17 @@ export default function Navbar() {
         </PopoverGroup>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:space-x-4 items-center">
           <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:space-x-4 items-center">
-            <a href="/login" className="text-sm/6 font-semibold">
-              Log In <span aria-hidden="true">&rarr;</span>
-            </a>
-            <a href="/signUp" className="text-sm/6 font-semibold">
-              Sign Up <span aria-hidden="true">&rarr;</span>
-            </a>
+           
+          {!localStorage.getItem('user') && (
+            <> <a href="/login" className="text-sm/6 font-semibold">
+            Log In <span aria-hidden="true">&rarr;</span>
+          </a>
+          <a href="/signUp" className="text-sm/6 font-semibold">
+            Sign Up <span aria-hidden="true">&rarr;</span>
+          </a></>
+          )}
+
+           
             <a href="/wishlist" className="relative text-sm/6 font-semibold p-2 rounded-full border border-white">
               <IoMdHeartEmpty size={20} /> <span aria-hidden="true"></span>
               {wishItems > 0 && (
