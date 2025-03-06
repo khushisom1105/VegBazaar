@@ -12,7 +12,7 @@ const ThankYou = () => {
             <p className="text-gray-600 mt-2 text-sm md:text-base">
               Lorem ipsum dolor sit amet consectetur. Lacus felis enim viverra nulla ut commodo mi purus. Pellentesque nisi magna aliquet pellentesque. Nulla id lectus viverra nulla eu. Massa sem massa in volutpat feugiat.
             </p>
-            <a href="index.html" className="mt-4 inline-block bg-[#345333] text-white px-6 py-2 rounded-full shadow-md hover:bg-[#F2C94C]">
+            <a href="/" className="mt-4 inline-block bg-[#345333] text-white px-6 py-2 rounded-full shadow-md hover:bg-[#F2C94C]">
               BACK TO HOMEPAGE
             </a>
           </div>
@@ -27,21 +27,21 @@ const ThankYou = () => {
             <div className="mt-4 space-y-3 text-gray-700">
               <div className="flex justify-between">
                 <h5>Oatmeal &amp; Cocoa Cookies x 1</h5>
-                <span>$100.00</span>
+                <span>₹100.00</span>
               </div>
               <div className="flex justify-between">
                 <h5>Shipping Price</h5>
-                <span>$10.00</span>
+                <span>₹10.00</span>
               </div>
               <div className="flex justify-between">
                 <h5>Sales &amp; TAX</h5>
-                <span>$5.00</span>
+                <span>₹5.00</span>
               </div>
             </div>
 
             <div className="mt-4 border-t pt-4 flex justify-between text-lg font-semibold">
               <h5>Total</h5>
-              <span>$115.00</span>
+              <span>₹115.00</span>
             </div>
           </div>
 

@@ -89,7 +89,7 @@ const AboutUs = () => {
 
   return (
     <>
-    <div className="bg-green-900 py-20 md:py-28 lg:py-32 text-white">
+    <div className="bg-[#3B5236] py-20 md:py-28 lg:py-32 text-white">
       <div className="container mx-auto px-4">
           <div className="mt-2 text-base md:text-lg text-center">
             <h5 className="text-5xl font-semibold">About Us</h5>
@@ -124,7 +124,7 @@ const AboutUs = () => {
           
           {/* Text Content */}
           <div className="md:w-3/5 w-full mt-6 md:mt-0 md:pl-10">
-            <span className="text-green-600 font-semibold uppercase">About OrganicFarm</span>
+            <span className="text-black font-semibold uppercase">About OrganicFarm</span>
             <h5 className="text-2xl md:text-3xl font-semibold mt-2">We Provide Top Quality Grocery Products</h5>
             <p className="text-gray-600 mt-4">
               Lorem ipsum dolor sit amet consectetur. In mauris tortor eget faucibus risus sagittis. Odio eget pharetra viverra blandit faucibus orci vitae. Eget tincidunt et ac ut natoque arcu. Posuere in semper phasellus donec bibendum turpis mattis et molestie.

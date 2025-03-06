@@ -4,12 +4,7 @@ import './index.css'
 import App from './App.tsx'
 import Product from './Product.tsx'
 
-<<<<<<< HEAD
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-=======
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
-// import BannerD from './homepage/banner.tsx'
->>>>>>> b8d2672fc38ec966d24c085ed5b3269d6d9eb086
 import Footer from './homepage/footer.tsx'
 import Wishlist from './Wishlist.tsx'
 import Checkout from './Checkout.tsx'
@@ -17,6 +12,9 @@ import Navbar from './components/Navbar.tsx'
 import Login from './login.tsx'
 import SignUp from './signUp.tsx'
 import Detail from './viewProductDetail.tsx'
+import AboutUs from './components/AboutUs.tsx'
+import ContactUs from './components/ContactUs.tsx'
+import ThankYou from './components/ThankYou.tsx'
 
 
 createRoot(document.getElementById('root')!).render(
@@ -35,6 +33,9 @@ createRoot(document.getElementById('root')!).render(
                 <Route path="/login" element={<Login />} />
                 <Route path="/product-detail" element={<Detail />} />
                 <Route path="/signUp" element={<SignUp />} />
+                <Route path="/aboutus" element={<AboutUs />} />
+                <Route path="/contactus" element={<ContactUs />} />
+                <Route path="/thankyou" element={<ThankYou />} />
             </Routes>
         </Router>
     <Footer />

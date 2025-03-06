@@ -17,7 +17,7 @@ const ContactUs = () => {
 
   return (
     <>
-      <div className="bg-green-900 py-20 md:py-28 lg:py-32 text-white">
+      <div className="bg-[#3B5236] py-20 md:py-28 lg:py-32 text-white">
         <div className="container mx-auto px-4">
             <div className="mt-2 text-base md:text-lg text-center">
                 <h5 className="text-5xl font-semibold">Contact Us</h5>
@@ -93,7 +93,7 @@ const ContactUs = () => {
               </div>
               <input type="text" name="Subject" placeholder="Subject" className="p-3 border rounded w-full" />
               <textarea name="Message" placeholder="Type your message here" className="p-3 border rounded w-full" rows="4"></textarea>
-              <button type="submit" className="bg-green-900 text-white px-6 py-2 rounded flex items-center gap-2">
+              <button type="submit" className="bg-[#3B5236] text-white px-6 py-2 rounded flex items-center gap-2">
                 SEND MESSAGE <img src="/assets/images/icons/Right-arrow.svg" alt="Arrow" />
               </button>
             </form>
