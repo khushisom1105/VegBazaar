@@ -34,7 +34,7 @@ function Product() {
 
     const fetchProducts = async () => {
         try {
-            const response = await axios.get("http://localhost:4007/products");
+            const response = await axios.get("http://localhost:4007/products/products");
             if(category === "all"){
                 setProducts(response.data.products);
             }

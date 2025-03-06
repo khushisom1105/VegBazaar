@@ -1,11 +1,15 @@
-const cartServices = require('../services/cartServices');
-
+const cartServices = require('../services/cart');
+const { getUser } = require("../services/userAuth");
 /**
  * Get the cart for a user
  */
 const getCart = async (req, res) => {
   try {
-    const userId = req.user.id; // Assuming user ID is extracted from auth middleware
+    console.log("Enter")
+    const auth = getUser(req.headers.authorization);
+    console.log("Enter 2 ",req.headers.authorization)
+    const userId = auth.id; // Assuming user ID is extracted from auth middleware
+    console.log("auth id ",auth.id)
     const cart = await cartServices.getUserCart(userId);
     res.status(200).json({ success: true, cart });
   } catch (error) {
@@ -18,9 +22,13 @@ const getCart = async (req, res) => {
  */
 const addToCart = async (req, res) => {
   try {
-    const userId = req.user.id;
+    console.log("Enter")
+    const auth = getUser(req.headers.authorization);
+    console.log("Enter 2 ",req.headers.authorization)
+    const userId = auth.id; 
+ 
     const { productId, quantity } = req.body;
-
+    console.log("product id , quantity",productId,quantity)
     if (!productId || !quantity) {
       return res.status(400).json({ success: false, message: 'Product ID and quantity are required' });
     }

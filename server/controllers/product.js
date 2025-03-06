@@ -52,7 +52,7 @@ const createProductController = async (req, res) => {
 const updateProductController = async (req, res) => {
   try {
     const { productId } = req.params;
-    const { name, description, price, category, status, discount ,type_quantity } = req.body;
+    const { name, description, price, category, status, discount ,type_quantity,stock } = req.body;
 
     if (!name && !description && !price && !category && !status && !discount && !req.file && type_quantity) {
       return res.status(400).json({ message: "At least one field must be provided to update." });

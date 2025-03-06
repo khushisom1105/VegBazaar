@@ -23,6 +23,31 @@ const ViewProductDetail = () => {
     setSelectedQuantity(parseFloat(Math.max(newQuantity, stepValue).toFixed(2))); // Prevents going below allowed min
   }
 
+  // Handle Add to Cart functionality (Frontend Only)
+  const handleAddToCart = () => {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    const cartItem = {
+      productId: product._id,
+      name: product.name,
+      price: product.price,
+      type_quantity:product.type_quantity,
+      stock:product.stock,
+      quantity: selectedQuantity,
+      image: product.images
+    };
+
+    const existingProductIndex = cart.findIndex(item => item.productId === product._id);
+    if (existingProductIndex > -1) {
+      cart[existingProductIndex].quantity = selectedQuantity;
+    } else {
+      cart.push(cartItem);
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+    alert("Added to Cart");
+  };
+
   return (
     <div className="container mx-auto p-8 font-nunito">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -56,54 +81,35 @@ const ViewProductDetail = () => {
               <button
                 type="button"
                 onClick={() => updateQuantity(-stepValue)}
-                className="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none"
+                className="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-11"
               >
-                <svg
-                  className="w-3 h-3 text-gray-900 dark:text-white"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 18 2"
-                >
-                  <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 1h16" />
-                </svg>
+                -
               </button>
 
               {/* Quantity Input */}
               <input
                 type="text"
+                name="quantity_pick"
                 value={selectedQuantity}
                 readOnly
-                className="bg-gray-50 border-x-0 border-gray-300 h-11 text-center text-gray-900 text-sm focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                className="bg-gray-50 border-x-0 border-gray-300 h-11 text-center text-gray-900 text-sm w-full py-2.5"
               />
 
               {/* Increment Button */}
               <button
                 type="button"
                 onClick={() => updateQuantity(stepValue)}
-                className="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none"
+                className="bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-11"
               >
-                <svg
-                  className="w-3 h-3 text-gray-900 dark:text-white"
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 18 18"
-                >
-                  <path
-                    stroke="currentColor"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M9 1v16M1 9h16"
-                  />
-                </svg>
+                +
               </button>
             </div>
           </div>
 
           {/* Add to Cart Button */}
-          <button className="mt-6 bg-[#D3B758] text-white py-3 px-6 rounded-full font-semibold hover:bg-[#b89e44]">
+          <button className="mt-6 bg-[#D3B758] text-white py-3 px-6 rounded-full font-semibold hover:bg-[#b89e44]"
+            onClick={handleAddToCart}
+          >
             ADD TO CART
           </button>
         </div>

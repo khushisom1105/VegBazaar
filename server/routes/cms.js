@@ -10,25 +10,29 @@ const {
 } = require("../controllers/product");
 
 const {
-  getCart,
-  addToCart,
-  updateCartQuantity,
-  removeFromCart,
-  clearCart
-} = require("../controllers/cart");
+    createCategoryController,
+    updateCategoryController,
+    getAllCategoriesController,
+    //uploadImage, // Middleware for handling image uploads
+  } = require("../controllers/category");
+
+const {
+getAllUser
+} = require("../controllers/cms");
+
 
 // ✅ Product Routes
-router.post("/products",(req,res)=>{res.send("hii")}, uploadImage, createProductController);
+router.get("/users", getAllUser);
+
+router.post("/products", uploadImage, createProductController);
 router.get("/products", getAllProductsController);
 router.get("/products/:productId", getProductByIdController);
 router.put("/products/:productId", uploadImage, updateProductController);
 router.delete("/products/:productId", deleteProductController);
 
-// ✅ Cart Routes
-router.get("/cart",getCart);
-router.post("/cart/add", addToCart);
-router.put("/cart/update", updateCartQuantity);
-router.delete("/cart/remove", removeFromCart);
-router.delete("/cart/clear", clearCart);
+router.post("category/create", uploadImage, createCategoryController);
+router.put("/category/:categoryId", uploadImage, updateCategoryController);
+router.get("/category", getAllCategoriesController);
+
 
 module.exports = router;

@@ -122,8 +122,9 @@ const signIn = async (req, res) => {
     } else {
       user = await getUserById({ phone });
     }
-
+  console.log("enter")
     if (user) {
+    console.log(user)
      console.log(password,user.hashPassword)
       if (await user.authenticate(password, user.hashPassword)) {
         const token = setUser(user.id, user.email);

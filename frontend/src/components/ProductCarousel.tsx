@@ -13,7 +13,7 @@ const ProductCarousel = () => {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        axios.get("http://localhost:4007/products") // Replace with actual API endpoint
+        axios.get("http://localhost:4007/products/products") // Replace with actual API endpoint
             .then((response) => {
                 setProducts(response.data.products);
             })

@@ -17,23 +17,31 @@ const getUserCart = async (userId) => {
  * @returns {Promise<Object>} - Updated cart
  */
 const addToCart = async (userId, productId, quantity) => {
-  let cart = await Cart.findOne({ userId });
+  console.log("finally 1");
+  console.log(userId, productId, quantity);
 
+  let cart = await Cart.findOne({userId:userId });
+  console.log("Cart",cart)
   if (!cart) {
-    // Create new cart if not found
-    cart = new Cart({ userId, products: [{ productId, quantity }] });
+    // Create new cart if no cart exists
+    cart = new Cart({
+      userId,
+      products: [{ productId, quantity }],
+    });
   } else {
     // Check if product already exists in cart
     const existingProduct = cart.products.find(item => item.productId.toString() === productId);
 
     if (existingProduct) {
-      existingProduct.quantity += quantity;
+      existingProduct.quantity = quantity; // Update quantity if product exists
     } else {
-      cart.products.push({ productId, quantity });
+      cart.products.push({ productId, quantity }); // Add new product to cart
     }
   }
 
-  return await cart.save();
+  await cart.save(); // Save changes to database
+  console.log(cart, "Cart");
+  return cart;
 };
 
 /**
