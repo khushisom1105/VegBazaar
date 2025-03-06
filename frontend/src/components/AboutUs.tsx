@@ -101,7 +101,7 @@ const AboutUs = () => {
             <nav aria-label="breadcrumb">
               <ol className="flex justify-center md:justify-center space-x-2 text-sm md:text-base">
                 <li>
-                  <a href="index.html" className="text-white text-xl hover:text-white">Home</a>
+                  <a href="/" className="text-white text-xl hover:text-white">Home</a>
                 </li>
                 <li className="text-white text-xl">{">"}</li>
                 <li className="text-white text-xl">About</li>

@@ -29,7 +29,7 @@ const ContactUs = () => {
                 <nav aria-label="breadcrumb">
                 <ol className="flex justify-center md:justify-center space-x-2 text-sm md:text-base">
                     <li>
-                    <a href="index.html" className="text-white text-xl hover:text-white">Home</a>
+                    <a href="/" className="text-white text-xl hover:text-white">Home</a>
                     </li>
                     <li className="text-white text-xl">{">"}</li>
                     <li className="text-white text-xl">Contact</li>
@@ -47,7 +47,7 @@ const ContactUs = () => {
             <div>
               <h5 className="text-xl font-semibold">Get in touch</h5>
               <a href="mailto:info@example.com" className="text-black flex items-center gap-2">
-                info@example.com
+                vegbazaar@gmail.com
                 <img src="/assets/images/icons/Testimonial-right-arrowd.svg" alt="Arrow" />
               </a>
             </div>
@@ -55,22 +55,22 @@ const ContactUs = () => {
               <div>
                 <h5 className="text-lg font-semibold">Address</h5>
                 <address className="text-gray-600">
-                  12 NW 19th Place, Pompano<br />Beach, FL, 33063 United States
+                  B-104, Landmark<br />Kudasan, Gandhinagar, Gujarat, India
                 </address>
               </div>
               <div>
                 <h5 className="text-lg font-semibold">Phone</h5>
                 <div className="text-gray-600">
-                  <a href="tel:+12345678900">+(1) 234 567 8900</a>
+                  <a href="tel:+12345678900">+(91) 99 09XX XXXX  </a>
                 </div>
                 <div className="text-gray-600">
-                  <a href="tel:+12345678900">+(1) 234 567 8900</a>
+                  <a href="tel:+12345678900">+(91) 99 95XX XXXX</a>
                 </div>
               </div>
             </div>
             <div>
               <iframe
-                src="https://www.google.com/maps/embed?..."
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3667.82706218519!2d72.62672367477478!3d23.176511110567063!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395c2bb3619f9fdf%3A0xc4be3eeb15516748!2sThe%20Landmark!5e0!3m2!1sen!2sin!4v1741276141914!5m2!1sen!2sin"
                 width="100%"
                 height="260"
                 style={{ border: 0 }}
