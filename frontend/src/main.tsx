@@ -15,6 +15,7 @@ import Detail from './viewProductDetail.tsx'
 import AboutUs from './components/AboutUs.tsx'
 import ContactUs from './components/ContactUs.tsx'
 import ThankYou from './components/ThankYou.tsx'
+import PrivacyPolicy from './components/PrivacyPolicy.tsx'
 
 
 createRoot(document.getElementById('root')!).render(
@@ -36,6 +37,7 @@ createRoot(document.getElementById('root')!).render(
                 <Route path="/aboutus" element={<AboutUs />} />
                 <Route path="/contactus" element={<ContactUs />} />
                 <Route path="/thankyou" element={<ThankYou />} />
+                <Route path="/privacypolicy" element={<PrivacyPolicy />} />
             </Routes>
         </Router>
     <Footer />
