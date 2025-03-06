@@ -1,24 +1,11 @@
-// import React from "react";
 
 function Banner() {
     return (
-    //   <div className="flex flex-wrap justify-center bg-yellow-500 text-white space-x-4 py-5 px-4 sm:px-8 md:px-16">
-    //     <div className="space-y-4 sm:flex sm:space-y-0 sm:space-x-4">
-    //       <img src="public/exclusive-product-1.png" className="w-full sm:w-1/4 md:w-1/5 object-contain" />
-    //       <img src="public/exclusive-product-2.png" className="w-full sm:w-1/4 md:w-1/5 object-contain" />
-    //     </div>
-    //     <div className="sm:flex sm:space-x-4 sm:space-y-0">
-    //       <img src="public/exclusive-product-3.png" className="w-full sm:w-1/4 md:w-1/5 object-contain" />
-    //     </div>
-    //     <div className="sm:flex sm:space-x-4 sm:space-y-0">
-    //       <img src="public/exclusive-product-4.png" className="w-full sm:w-1/4 md:w-1/5 object-contain" />
-    //     </div>
-    //   </div>
-    <div className="bg-yellow-300  py-10">
-    <div className="container mx-auto px-4">
+    <div className="bg-yellow-300  py-10 font-nunito ">
+    <div className="px-4 mx-7 lg:mx-12 xl:mx-28 2xl:mx-36 my-10">
       <div className=" flex flex-col justify-center items-center text-center mb-6">
-        <span className="text-lg font-semibold text-gray-700">Don't miss out</span>
-        <h5 className="text-2xl font-bold  text-gray-800 mt-2">
+        <span className=" font-semibold text-gray-700">Don't miss out</span>
+        <h5 className="text-4xl font-bold  text-gray-800 mt-2 font-marcellus">
           An Exclusive Style Of<br />Grocery Store
         </h5>
         
@@ -42,7 +29,7 @@ function Banner() {
             <span className="text-sm font-semibold">Fruit &amp; Vegetables</span>
             <h5 className="text-lg font-bold mt-2">Whole wheat brown bread 300g, 4 packs</h5>
             <div className="border-t border-white my-3 w-full"></div>
-            <div className="text-xl font-semibold">$8.45 - $10.55</div>
+            <div className="text-xl font-semibold">₹80.45 - ₹100.55</div>
             <a
               href="shop.html"
               className="mt-4 text-sm text-white flex items-center space-x-2 hover:underline"
@@ -65,7 +52,7 @@ function Banner() {
             <span className="text-sm font-semibold">Fruit &amp; Vegetables</span>
             <h5 className="text-lg font-bold mt-2">Whole wheat brown bread 300g, 4 packs</h5>
             <div className="border-t border-white my-3 w-full"></div>
-            <div className="text-xl font-semibold">$8.45 - $10.55</div>
+            <div className="text-xl font-semibold">₹80.45 - ₹100.55</div>
             <a
               href="shop.html"
               className="mt-4 text-sm text-white flex items-center space-x-2 hover:underline"
@@ -89,7 +76,7 @@ function Banner() {
             <span className="text-sm font-semibold">Fruit &amp; Vegetables</span>
             <h5 className="text-lg font-bold mt-2">Whole wheat brown bread 300g, 4 packs</h5>
             <div className="border-t border-white my-3 w-full"></div>
-            <div className="text-xl font-semibold">$8.45 - $10.55</div>
+            <div className="text-xl font-semibold">₹80.45 - ₹100.55</div>
             <a
               href="shop.html"
               className="mt-4 text-sm text-white flex items-center space-x-2 hover:underline"
@@ -111,7 +98,7 @@ function Banner() {
           <span className="text-sm font-semibold">Fruit &amp; Vegetables</span>
             <h5 className="text-lg font-bold mt-2">Whole wheat brown bread 300g, 4 packs</h5>
             <div className="border-t border-white my-3 w-full"></div>
-            <div className="text-xl font-semibold">$8.45 - $10.55</div>
+            <div className="text-xl font-semibold">₹80.45 - ₹100.55</div>
             <a
               href="shop.html"
               className="mt-4 text-sm text-white flex items-center space-x-2 hover:underline"

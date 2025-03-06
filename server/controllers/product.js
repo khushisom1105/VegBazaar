@@ -1,4 +1,4 @@
-const productServices = require("../services/productServices"); // Import the product services
+const productServices = require("../services/product"); // Import the product services
 const cloudinary = require("../utils/cloudinary"); // Import Cloudinary configuration
 const multer = require("multer"); // Multer for file uploads
 

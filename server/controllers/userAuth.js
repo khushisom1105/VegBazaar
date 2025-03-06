@@ -1,8 +1,8 @@
 const { StatusCodes } = require("http-status-codes");
 const crypto = require('crypto'); 
-const nodemailer = require('node-mailer');
+const nodemailer = require('nodemailer');
 const bcrypt = require("bcryptjs");
-const { createUser, getUserById, getUserByemail, getUserByPhone } = require("../services/userOperation.js");
+const { createUser, getUserById, getUserByemail, getUserByPhone,getUserByEmail } = require("../services/userOperation.js");
 const { setUser, getuser } = require("../services/userAuth.js");
 require("dotenv").config();
 
@@ -27,8 +27,8 @@ const sendOtpEmail = async (email, otp) => {
   const mailOptions = {
     from: process.env.EMAIL,
     to: email,
-    subject: 'Password Reset OTP',
-    text: `Your OTP for password reset is: ${otp}`,
+    subject: 'OTP for Verification',
+    text: `OTP is: ${otp}`,
   };
 
   try {
@@ -76,9 +76,11 @@ const signUp = async (req, res) => {
   const {firstName, lastName, phone, email, password} = req.body;
 
   try {
+    console.log("hey")
     // Check if user already exists by email or phone
-    const existingUser = await getUserByemail(email);
+    const existingUser = await getUserByEmail(email);
     const existingUserPhone = await getUserByPhone(phone);
+    console.log("api")
     if (existingUser || existingUserPhone) {
       return res.status(StatusCodes.BAD_REQUEST).json({
         message: "User already registered.",
@@ -92,9 +94,9 @@ const signUp = async (req, res) => {
       lastName,
       phone,
       email,
-      password: hashPassword,
+      hashPassword,
     };
-
+console.log("User Data" , userData)
    
     const user = await createUser(userData);
     res.status(StatusCodes.OK).json({
@@ -116,22 +118,21 @@ const signIn = async (req, res) => {
 
     // If flag is true, find by email, otherwise find by phone
     if (flag) {
-      user = await getUserByEmail(email);
+      user = await getUserById({ email });
     } else {
-      user = await getUserByPhone(phone);
+      user = await getUserById({ phone });
     }
 
     if (user) {
-     
-      const isMatch = await bcrypt.compare(password, user.password);
-      if (isMatch) {
-        const token = setUser(user.id, user.email); // Generate token for user
+     console.log(password,user.hashPassword)
+      if (await user.authenticate(password, user.hashPassword)) {
+        const token = setUser(user.id, user.email);
 
         const { _id, firstName, lastName, phone, email } = user;
-        return res.status(StatusCodes.OK).json({
+        return res.status(StatusCodes.OK).json({       
           token,
           user: { _id, firstName, lastName, phone, email },
-          message: "Login Successful",
+          message: "Login Successful"
         });
       } else {
         return res.status(StatusCodes.UNAUTHORIZED).json({
@@ -143,6 +144,8 @@ const signIn = async (req, res) => {
         message: "User does not exist..!",
       });
     }
+   
+    
   } catch (error) {
     console.error('Error in signIn:', error);
     return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ error: error.message });
@@ -174,9 +177,36 @@ const verifyOtp = async (req, res) => {
   } catch (error) {
     console.error('Error in verifyOtp:', error);
     return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ error: error.message });
-  }
+  } 
 };
+const emailVerification = async(req,res) =>
+{
+  try {
+    console.log("OTP API Hit 1");
+    const { email } = req.body;
 
+      const otp = generateOtp();
+      console.log("otp");
+       // user.otp = otp;
+       // user.otpExpiry = Date.now() + 10 * 60 * 1000; // OTP expires in 10 minutes
+
+       // await user.save(); 
+
+       // Send OTP to the user via email
+      await sendOtpEmail(email, otp);
+      return res.status(StatusCodes.OK).json({
+        data:{
+          otp:otp
+        },
+        message: 'OTP sent to your email .',
+      });
+   
+  } catch (error) {
+    console.error('Error in sending OTP:', error);
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ error: error.message });
+  }
+
+}
 const updatePassword = async (req, res) => {
   try {
     const { email, newPassword } = req.body;
@@ -206,4 +236,4 @@ const updatePassword = async (req, res) => {
   }
 };
 
-module.exports = { signUp, signIn, forgotPass, verifyOtp, updatePassword };
+module.exports = { signUp, signIn, forgotPass, verifyOtp, updatePassword ,sendOtpEmail ,emailVerification };
