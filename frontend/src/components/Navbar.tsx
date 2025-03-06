@@ -134,10 +134,10 @@ export default function Navbar() {
           </Popover>
 
 
-          <a href="#" className="text-sm/6 font-semibold">
+          <a href="contactus" className="text-sm/6 font-semibold">
             Contact Us
           </a>
-          <a href="#" className="text-sm/6 font-semibold">
+          <a href="/aboutus" className="text-sm/6 font-semibold">
             About Us
           </a>
         </PopoverGroup>
