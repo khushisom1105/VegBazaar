@@ -1,18 +1,46 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FiMenu, FiX } from "react-icons/fi"; // Icons for mobile menu toggle
 import img1 from "./image/shop-img1.jpg";
 import img2 from "./image/shop-img2.jpg";
 import img3 from "./image/shop-img3.jpg";
+import axios from "axios";
 
 const MyAccount = () => {
   const [activeTab, setActiveTab] = useState("orders");
   const [isSidebarOpen, setSidebarOpen] = useState(false); // Sidebar toggle for mobile
 
-  const orders = [
-    { id: 1, name: "Fresh Natural Oranges", qty: 2, price: 50.0, date: "Mar 7, 2025", rating: 5, image: img1 },
-    { id: 2, name: "Organic Cabbage (1 Pc)", qty: 3, price: 80.0, date: "Mar 7, 2025", rating: 5, image: img2 },
-    { id: 3, name: "Red Apple Envy (6 pc)", qty: 1, price: 100.0, date: "Mar 7, 2025", rating: 5, image: img3 },
-  ];
+  const [orders, setOrders] = useState<any[]>([]); // State for orders
+
+  useEffect(() => {
+    const fetchOrders = async () => {
+      try {
+        const token = localStorage.getItem("userToken");
+        if (!token) {
+          console.error("No token found");
+          return;
+        }
+  
+        const auth = token.replace(/"/g, ""); // Remove extra double quotes
+  
+        console.log("Token is", auth);
+  
+        const response = await axios.get("http://localhost:4007/order/user", {
+          headers: {
+            Authorization: auth,
+            "Content-Type": "application/json",
+          },
+        });
+  
+        console.log(response.data.orders);
+        setOrders(response.data.orders); // Assuming API returns { orders: [...] }
+      } catch (error) {
+        console.error("Error fetching orders:", error);
+      }
+    };
+  
+    fetchOrders();
+  }, []);
+  
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -107,26 +135,29 @@ const MyAccount = () => {
             <div>
               <h2 className="text-2xl font-bold mb-4 text-[#3B5236] font-marcellus">Your Orders</h2>
 
+              <div>
               <div className="flex flex-col gap-4">
                 {orders.map((order) => (
-                  <div key={order.id} className="flex flex-col md:flex-row items-center gap-4 p-4 border rounded-lg">
-                    <img src={order.image} alt={order.name} className="w-24 h-24 md:w-32 md:h-28 rounded-xl object-cover" />
-                    <div className="text-center md:text-left flex flex-col md:flex-row justify-between w-full font-nunito gap-5">
-                      <div className="text-[#3B5236] font-semibold text-lg font-marcellus flex gap-2 justify-center">
-                        <p>{order.name}</p>
-                        <p className="font-nunito">X</p>
-                        <p>{order.qty}</p>
-                      </div>
-                      <p className="text-[#3B5236] font-semibold">₹{order.price.toFixed(2)}</p>
-                      <div>
-                        <p className="text-gray-500 text-sm">Delivered on {order.date}</p>
-                        <p className="text-yellow-500 text-sm">{"★".repeat(order.rating)}</p>
-                      </div>
+                  <div key={order._id} className="border p-4 rounded-lg">
+                    <h3 className="font-bold text-[#3B5236]">Order ID: {order._id}</h3>
+                    <p className="text-sm text-gray-600">Status: {order.status}</p>
+                    <p className="text-sm text-gray-600">Total: ₹{order.totalAmount.toFixed(2)}</p>
+                    <div className="mt-3 flex flex-col gap-2">
+                      {order.products.map((item) => (
+                        <div key={item._id} className="flex items-center gap-4 p-2 border rounded">
+                          <img src={item.product.images} alt={item.product.name} className="w-16 h-16 rounded object-cover" />
+                          <div>
+                            <p className="font-semibold text-[#3B5236]">{item.product.name} x {item.quantity}</p>
+                            <p className="text-gray-700">₹{(item.price * item.quantity).toFixed(2)}</p>
+                          </div>
+                        </div>
+                      ))}
                     </div>
                   </div>
                 ))}
               </div>
-              <button className='flex items-center justify-center font-nunito text-sm border p-3 px-8 rounded-full gap-2 my-10 bg-[#3B5236] text-white font-semibold hover:bg-[#D3B758]'>CONTINUE SHOPPING</button>
+            </div>
+            <a href="/" className='flex items-center justify-center font-nunito text-sm border p-3 px-8 rounded-full gap-2 my-10 bg-[#3B5236] text-white font-semibold hover:bg-[#D3B758]'>CONTINUE SHOPPING</a>
 
             </div>
           )}

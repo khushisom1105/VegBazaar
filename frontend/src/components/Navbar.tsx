@@ -53,7 +53,7 @@ export default function Navbar() {
 
     fetchCartCount();
 
-// Fetch wishlist items count
+    // Fetch wishlist items count
     const fetchWishCount = async () => {
       try {
         const res = await axios.get("http://localhost:4007/wishlist/fetch");
@@ -93,6 +93,7 @@ export default function Navbar() {
           <a href="/" className="text-sm/6 font-semibold">
             Home
           </a>
+
           <Popover className="relative">
             {({ open, close }) => ( // Destructure 'close' from Popover
               <>
@@ -132,6 +133,11 @@ export default function Navbar() {
               </>
             )}
           </Popover>
+          {localStorage.getItem('user') && (
+            <a href="/myaccount" className="text-sm/6 font-semibold">
+              My Profile
+            </a>
+          )}
 
 
           <a href="contactus" className="text-sm/6 font-semibold">
@@ -164,9 +170,10 @@ export default function Navbar() {
               </div>
             )} */}
 
-            <button onClick={() => {               
-               setCartOpen(true)}
-               } className="p-2 rounded-full border border-white"><IoCartOutline size={20} /></button>
+            <button onClick={() => {
+              setCartOpen(true)
+            }
+            } className="p-2 rounded-full border border-white"><IoCartOutline size={20} /></button>
             <Cart isOpen={cartOpen} closeCart={() => setCartOpen(false)} />
           </div>
         </div>
@@ -212,7 +219,7 @@ export default function Navbar() {
                     />
                   </DisclosureButton>
                   <DisclosurePanel className="mt-2 space-y-2">
-                  {categories.map((item) => (
+                    {categories.map((item) => (
                       <DisclosureButton
                         key={item.name}
                         as="a"
@@ -262,25 +269,25 @@ export default function Navbar() {
                 >
                   Wishlist
                   {wishItems > 0 && (
-                      <span className=" bg-red-600 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
-                        {wishItems}
-                      </span>
-                    )}
+                    <span className=" bg-red-600 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
+                      {wishItems}
+                    </span>
+                  )}
                 </a>
                 <a
                   href="#"
                   className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
                 >
                   <div className="flex flex-col ">
-                  <button onClick={() => setCartOpen(true)} className="flex justify-between items-center">
-                    <span>Cart</span>
-                    {cartItems > 0 && (
-                      <span className=" bg-red-600 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
-                        {cartItems}
-                      </span>
-                    )}
+                    <button onClick={() => setCartOpen(true)} className="flex justify-between items-center">
+                      <span>Cart</span>
+                      {cartItems > 0 && (
+                        <span className=" bg-red-600 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
+                          {cartItems}
+                        </span>
+                      )}
                     </button>
-                    </div>
+                  </div>
                   <Cart isOpen={cartOpen} closeCart={() => setCartOpen(false)} />
                 </a>
               </div>

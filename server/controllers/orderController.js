@@ -18,6 +18,7 @@ exports.getUserOrders = async (req, res) => {
   try {
     const auth = getUser(req.headers.authorization);
     const userId = auth.id; 
+    console.log("user id",userId)
     const orders = await OrderService.getUserOrders(userId);
     res.status(200).json({ success: true, orders });
   } catch (error) {

@@ -1,6 +1,7 @@
 
 import axios from "axios";
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 interface CartItem {
   productId: string;
@@ -37,7 +38,7 @@ const Checkout: React.FC = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
+ const navigate = useNavigate()
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     let user = localStorage.getItem("user");
@@ -79,6 +80,7 @@ const Checkout: React.FC = () => {
       alert("Order placed successfully!");
       localStorage.removeItem("cart");
       setCartItems([]);
+      navigate("/myorders")
     } catch (error) {
       alert("Failed to place order: " + error.response?.data?.message || error.message);
     }
