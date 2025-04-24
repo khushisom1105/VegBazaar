@@ -117,17 +117,6 @@ function Product() {
                     </div>
                     <div className='flex flex-col w-full gap-4'>
                         <div className='font-marcellus font-semibold text-2xl'>Products</div>
-                        {/* {firstThreeProducts.map((product, index) => (
-                            <div className='flex gap-5' key={index}>
-                                <div className='flex justify-center items-center'>
-                                    <img src={product.productImage} className="object-cover rounded-xl h-20 w-20"></img>
-                                </div>
-                                <div className='flex flex-col justify-center'>
-                                    <div className='font-nunito font-bold text-[#3B5236]'>{product.productName}</div>
-                                    <div className='font-marcellus font-bold text-[#3B5236] text-lg'>₹{product.discountPrice}</div>
-                                </div>
-                            </div>
-                        ))} */}
                     </div>
                     <div className='flex justify-center items-center relative'>
                         <img src={img} className="object-cover rounded-3xl"></img>
@@ -188,7 +177,7 @@ function Product() {
                                     </div>
                                 </div>
 
-                                <button className='flex items-center justify-center font-nunito text-sm border p-3 px-8 rounded-full gap-2 bg-[#3B5236] text-white font-semibold hover:bg-[#D3B758]'>ADD TO CART <FaArrowRightLong /></button>
+                                <button className='flex items-center justify-center font-nunito text-sm border p-3 px-8 rounded-full gap-2 bg-[#3B5236] text-white font-semibold hover:bg-[#D3B758]'>SEE DETAILS <FaArrowRightLong /></button>
 
                             </div>
                         ))}

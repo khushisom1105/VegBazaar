@@ -8,9 +8,11 @@ import "swiper/css/pagination";
 import { FaChevronLeft, FaChevronRight, FaStar } from "react-icons/fa";
 import { IoMdHeartEmpty } from "react-icons/io";
 import { FaArrowRightLong } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
 
 const ProductCarousel = () => {
     const [products, setProducts] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         axios.get("http://localhost:4007/products/products") // Replace with actual API endpoint
@@ -26,7 +28,7 @@ const ProductCarousel = () => {
         <div className="relative max-w-screen-xl px-4 py-10 font-nunito mx-7 lg:mx-12 xl:mx-28 2xl:mx-36">
             <p className="text-center mb-4">Shop Essentials</p>
             <h2 className="text-center text-4xl font-semibold mb-4 font-marcellus">
-                OrganicFarm Bestsellers
+                VegBazaar Bestsellers
             </h2>
             <p className="text-center text-gray-600 mb-6">
             Fresh, organic favorites loved by every household.
@@ -51,6 +53,11 @@ const ProductCarousel = () => {
                 >
                     {products.map((product) => (
                         <SwiperSlide key={product._id}>
+                            {product.stock === 0 && (
+                                    <div className="absolute top-2 right-2 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full z-10 shadow-md">
+                                        OUT OF STOCK
+                                    </div>
+                                )}
                             <div className="flex flex-col rounded-2xl border p-3 gap-3 overflow-hidden">
                                 <div className='flex justify-center items-center relative'>
                                     <img src={product.images} alt={product.name} className="h-32 object-cover rounded-2xl w-full" />
@@ -76,8 +83,10 @@ const ProductCarousel = () => {
                                         </div>
                                     </div>
                                 </div>
-                                <button className='flex items-center justify-center font-nunito text-sm border p-3 px-8 rounded-full gap-2 bg-[#3B5236] text-white font-semibold hover:bg-[#D3B758]'>
-                                    ADD TO CART <FaArrowRightLong />
+                                <button className='flex items-center justify-center font-nunito text-sm border p-3 px-8 rounded-full gap-2 bg-[#3B5236] text-white font-semibold hover:bg-[#D3B758]'
+                                onClick={() => navigate("/product-detail", { state: { product } })}
+                                >
+                                    SEE DETAILS <FaArrowRightLong />
                                 </button>
                             </div>
                         </SwiperSlide>
