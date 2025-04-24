@@ -1,21 +1,27 @@
 import { FaArrowRightLong } from "react-icons/fa6";
 
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const slides = [
   {
     id: 1,
     title: "100% Organic And Natural Fresh Vegetables",
     subtitle: "Fruits & Vegetables",
+    category:{
+      _id:"6793e44bbbbca46a7775ebdd"
+    },
     description:
-      "Lorem ipsum dolor sit amet consectetur. Morbi vitae risus in adipiscing orci. Tempor tristique vulputate tortor adipiscing viverra pretium.",
+      "Explore our range of 100% organic, natural fresh vegetables and fruits, carefully grown for the best taste and nutrition.",
     image: "../../public/assets/images/products/slider-img.webp",
   },
   {
     id: 2,
     title: "Freshly Baked Goodness",
     subtitle: "Bakery & Pastries",
+    category:{
+      _id:"679d10e828d229c5e9b43a15"
+    },
     description:
       "Delicious and fresh bakery products made with organic ingredients. Experience the taste of homemade goodness.",
     image: "../../public/assets/images/products/slider-img.webp",
@@ -24,6 +30,9 @@ const slides = [
     id: 3,
     title: "Premium Quality Meat & Seafood",
     subtitle: "Meat & Seafood",
+    category:{
+      _id:"679d11ab28d229c5e9b43a19"
+    },
     description:
       "Enjoy fresh, high-quality meat and seafood, sourced responsibly to ensure the best flavors and nutrition.",
     image: "../../public/assets/images/products/slider-img.webp",
@@ -32,6 +41,7 @@ const slides = [
 
 const Banner2 = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+    const navigate = useNavigate();
 
   // Auto-slide every 5 seconds
   useEffect(() => {
@@ -59,9 +69,13 @@ const Banner2 = () => {
         <p className="text-lg text-gray-200 mt-4 max-w-2xl">{slides[currentSlide].description}</p>
 
         {/* Shop Now Button */}
-        <Link to="/product"><button className='flex items-center justify-center font-nunito text-sm border p-3 px-8 rounded-full gap-2 mt-3 text-white font-semibold hover:bg-[#D3B758]'>
+        <button className='flex items-center justify-center font-nunito text-sm border p-3 px-8 rounded-full gap-2 mt-3 text-white font-semibold hover:bg-[#D3B758]' 
+        onClick={() => {
+          navigate("/product", { state: { category: slides[currentSlide].category } });
+        }}
+        >
           SHOP NOW <FaArrowRightLong />
-        </button></Link>
+        </button>
 
         {/* Pagination (Clickable Dots) */}
         <div className="mt-8 flex gap-2">
