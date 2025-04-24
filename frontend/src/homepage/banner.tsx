@@ -10,8 +10,7 @@ function Banner() {
         </h5>
         
         <p className=" text-gray-600 w-full lg:w-[75%] xl:w-[75%] mt-4  ">
-          Lorem ipsum dolor sit amet consectetur. Sit integer sit rhoncus nisl magna risus amet at purus.
-          Quam purus amet nunc dui elementum.
+        Experience a unique way of grocery shopping with handpicked organic products, modern convenience, and traditional care — all designed to bring freshness, quality, and simplicity straight to your home.
         </p>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

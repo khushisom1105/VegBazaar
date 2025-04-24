@@ -29,7 +29,7 @@ const ProductCarousel = () => {
                 OrganicFarm Bestsellers
             </h2>
             <p className="text-center text-gray-600 mb-6">
-                Lorem ipsum dolor sit amet consectetur adipiscing elit.
+            Fresh, organic favorites loved by every household.
             </p>
 
             {/* Swiper Container */}
