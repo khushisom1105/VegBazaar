@@ -1,6 +1,20 @@
+import { useEffect, useState } from "react";
 import { FaArrowRightLong } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
-function footer() {
+export default function Footer() {
+  const [categories, setCategories] = useState([]);
+  const navigate = useNavigate();
+  useEffect(() => {
+    // Fetch categories
+    const getCategories = async () => {
+      const res = await axios.get("http://localhost:4007/category/fetch");
+      setCategories(res.data.categories);
+    };
+    getCategories();
+  }, []);
+
   return (
     <footer className="bg-[#3B5236] text-white py-5 px-4 sm:px-8 md:px-16 font-nunito ">
       <hr className="border-t border-gray-300 my-8"></hr>
@@ -61,12 +75,12 @@ function footer() {
           <p className="title-font  text-white tracking-widest text-3xl mb-3 font-marcellus">Get In Touch</p>
           <nav className="list-none space-y-6 mb-10">
             <li>
-              <a className="text-slate-300 ">Address: <br/> B-108, Landmark
-              Kudasan, Gandhinagar, Gujarat, India</a>
+              <a className="text-slate-300 ">Address: <br /> B-108, Landmark
+                Kudasan, Gandhinagar, Gujarat, India</a>
             </li>
             <hr className="border-t border-gray-300 my-8"></hr>
             <li>
-              <a className="text-slate-300 ">Need Help? <br/> Call: +(91) 99 0999 9999</a>
+              <a className="text-slate-300 ">Need Help? <br /> Call: +(91) 99 0999 9999</a>
             </li>
 
           </nav>
@@ -100,23 +114,18 @@ function footer() {
 
         <div className="lg:w-1/4 md:w-1/2 w-full px-4">
           <p className="title-font  text-white tracking-widest text-3xl mb-3 font-marcellus">Categories</p>
-          <nav className="list-none space-y-6 mb-10">
-            <li>
-              <a href="#" className="text-slate-300 hover:text-white">Fruits & Vegetables</a>
-            </li>
-            <li>
-              <a href="#" className="text-slate-300 hover:text-white">Dairy & Beverages</a>
-            </li>
-            <li>
-              <a href="#" className="text-slate-300 hover:text-white">Meats & Seafoods</a>
-            </li>
-            <li>
-              <a href="#" className="text-slate-300 hover:text-white">Bakery</a>
-            </li>
-            <li>
-              <a href="#" className="text-slate-300 hover:text-white">Biscuits & Snacks</a>
-            </li>
-          </nav>
+          {categories.map((item) => (
+            <nav className="list-none space-y-6 mb-10" key={item.name}>
+              <li>
+                <button
+                  onClick={() => {
+                    navigate("/product", { state: { category: item } });
+                  }}
+                  className="text-slate-300 hover:text-white">{item.name}
+                </button>
+              </li>
+            </nav>
+          ))}
         </div>
         <div className="lg:w-1/4 md:w-1/2 w-full p-4 ">
           <p className="title-font  text-white tracking-widest text-3xl mb-3 font-marcellus">Subscribe Newsletter</p>
@@ -160,8 +169,8 @@ function footer() {
       {/* Footer Bottom */}
       <div className="mt-4 flex flex-wrap justify-between items-center">
         <div className="flex">
-        <span className="font-nunito font-semibold text-xl">VEG</span>
-        <span className="font-nunito font-extrabold text-xl">BAZAAR</span>
+          <span className="font-nunito font-semibold text-xl">VEG</span>
+          <span className="font-nunito font-extrabold text-xl">BAZAAR</span>
         </div>
         <div className="flex">
           <p>&copy; 2025 VegBazaar. All rights reserved.</p>
@@ -171,5 +180,3 @@ function footer() {
     </footer>
   );
 }
-
-export default footer;
