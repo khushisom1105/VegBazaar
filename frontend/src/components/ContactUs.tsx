@@ -18,30 +18,9 @@ const ContactUs = () => {
 
   return (
     <>
-      {/* <div className="bg-[#3B5236] py-20 md:py-28 lg:py-32 text-white">
-        <div className="container mx-auto px-4">
-            <div className="mt-2 text-base md:text-lg text-center">
-                <h5 className="text-5xl font-semibold">Contact Us</h5>
-                <p className="mt-2 text-base md:text-md">
-                Lorem ipsum dolor sit amet consectetur. Condimentum sed sed blandit purus nec nibh tortor ipsum.
-                </p>
-            </div>
-            <div className="mt-2 text-base md:text-lg">
-                <nav aria-label="breadcrumb">
-                <ol className="flex justify-center md:justify-center space-x-2 text-sm md:text-base">
-                    <li>
-                    <a href="/" className="text-white text-xl hover:text-white">Home</a>
-                    </li>
-                    <li className="text-white text-xl">{">"}</li>
-                    <li className="text-white text-xl">Contact</li>
-                </ol>
-                </nav>
-            </div>
-        </div>
-    </div> */}
     <div className='bg-[#3B5236] flex flex-col justify-center items-center h-96 text-white gap-3 p-10'>
                 <p className='flex font-marcellus text-4xl font-semibold'>Contact Us</p>
-                <p className='flex'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error, eos laboriosam quia facilis a quas!</p>
+                <p className='flex'>Let’s connect! We’re just a message or call away.</p>
                 <p className='flex font-nunito text-lg font-semibold'>Home &rarr; Contact</p>
             </div>
 
