@@ -61,7 +61,7 @@ const ContactUs = () => {
               <div>
                 <h5 className="text-lg font-semibold">Address</h5>
                 <address className="text-gray-600">
-                  B-104, Landmark<br />Kudasan, Gandhinagar, Gujarat, India
+                  B-10, Landmark<br />Kudasan, Gandhinagar, Gujarat, India
                 </address>
               </div>
               <div>
