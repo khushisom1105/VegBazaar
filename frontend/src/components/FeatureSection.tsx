@@ -14,8 +14,8 @@ const FeatureSection = () => {
             <div className="w-full md:w-7/12">
               <div className="mg-f-top-text">
                 <p className="text-sm text-gray-600">
-                  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-                </p>
+                VegBazaar brings you farm-fresh, hygienically packed vegetables delivered straight to your doorstep — always fresh, always affordable. We source directly from trusted local farmers to ensure top quality and taste with every order. With easy ordering, fast delivery, and unbeatable prices.
+                </p> 
               </div>
             </div>
           </div>
@@ -30,7 +30,10 @@ const FeatureSection = () => {
                   <div className="card-body p-6 text-start">
                     <img src="assets/images/icons/Truck.svg" alt="Fast Delivery" className="w-16 h-16 mb-4" />
                     <h6 className="card-title text-xl font-marcellus font-semibold text-gray-800 mb-2">Fastest Delivery Within 30 Minutes</h6>
-                    <p className="card-text text-gray-600 text-sm">Lorem Ipsum is simply dummy text of the printing and typesetting industry dummy text ever since the 1500s when an unknown printer took a.</p>
+                    <p className="card-text text-gray-600 text-sm">
+                      Get your fresh veggies delivered to your doorstep in just 30 minutes — no delays, no waiting.
+                      We value your time and ensure lightning-fast service without compromising on quality or freshness.
+                    </p>
                   </div>
                 </div>
               </div>
@@ -42,7 +45,10 @@ const FeatureSection = () => {
                   <div className="card-body p-6 text-start">
                     <img src="assets/images/icons/mobile.svg" alt="Order from Website" className="w-16 h-16 mb-4" />
                     <h6 className="card-title text-xl font-marcellus font-semibold text-gray-800 mb-2">Order Instant From Our Website</h6>
-                    <p className="card-text text-gray-600 text-sm">Lorem Ipsum is simply dummy text of the printing and typesetting industry dummy text ever since the 1500s when an unknown printer took a.</p>
+                    <p className="card-text text-gray-600 text-sm">
+                      Skip the hassle and order your favorite vegetables in just a few clicks — it’s quick, easy, and seamless.
+                      With a smooth interface and secure checkout, your fresh grocery shopping is just a tap away.
+                    </p>
                   </div>
                 </div>
               </div>
@@ -53,8 +59,11 @@ const FeatureSection = () => {
                 <div className="card bg-white shadow-lg rounded-lg overflow-hidden">
                   <div className="card-body p-6 text-start">
                     <img src="assets/images/icons/Map.svg" alt="Track Order" className="w-16 h-16 mb-4" />
-                    <h6 className="card-title text-xl font-marcellus font-semibold text-gray-800 mb-2">Track Your Order With Map Coverage</h6>
-                    <p className="card-text text-gray-600 text-sm">Lorem Ipsum is simply dummy text of the printing and typesetting industry dummy text ever since the 1500s when an unknown printer took a.</p>
+                    <h6 className="card-title text-xl font-marcellus font-semibold text-gray-800 mb-2">Track Your Order With Map</h6>
+                    <p className="card-text text-gray-600 text-sm">
+                      Stay updated in real-time with our live map tracking — know exactly where your veggies are and when they’ll arrive.
+                      From our store to your door, we keep you informed every step of the way.
+                    </p>
                   </div>
                 </div>
               </div>
