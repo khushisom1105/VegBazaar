@@ -7,34 +7,34 @@ const slides = [
   {
     id: 1,
     title: "100% Organic And Natural Fresh Vegetables",
-    subtitle: "Fruits & Vegetables",
+    subtitle: "Vegetables",
     category:{
-      _id:"6793e44bbbbca46a7775ebdd"
+      _id:"6793e44bbbbca46a7775ebdd",
+      name: "Vegetable"
     },
-    description:
-      "Explore our range of 100% organic, natural fresh vegetables and fruits, carefully grown for the best taste and nutrition.",
+    description: "Explore our range of 100% organic, natural fresh vegetables, carefully grown for the best taste and nutrition.",
     image: "../../public/assets/images/products/slider-img.webp",
   },
   {
     id: 2,
-    title: "Freshly Baked Goodness",
-    subtitle: "Bakery & Pastries",
+    title: "Farm-Fresh Dairy Products",
+    subtitle: "Milk, Cheese & More",
     category:{
-      _id:"679d10e828d229c5e9b43a15"
+      _id:"679d10e828d229c5e9b43a15",
+      name: "Dairy Products"
     },
-    description:
-      "Delicious and fresh bakery products made with organic ingredients. Experience the taste of homemade goodness.",
+    description: "Enjoy premium quality dairy products, sourced from local farms, offering fresh milk, creamy cheese, and more, all free from artificial additives.",
     image: "../../public/assets/images/products/slider-img.webp",
   },
   {
     id: 3,
-    title: "Premium Quality Meat & Seafood",
-    subtitle: "Meat & Seafood",
+    title: "Freshly Picked, Juicy Fruits",
+    subtitle: "Seasonal & Sweet Fruits",
     category:{
-      _id:"679d11ab28d229c5e9b43a19"
+      _id:"679d11ab28d229c5e9b43a19",
+      name: "Fresh fruits"
     },
-    description:
-      "Enjoy fresh, high-quality meat and seafood, sourced responsibly to ensure the best flavors and nutrition.",
+    description: "Savor the taste of nature with our fresh, handpicked fruits, offering a wide variety of seasonal delights that are packed with flavor and nutrients.",
     image: "../../public/assets/images/products/slider-img.webp",
   },
 ];
