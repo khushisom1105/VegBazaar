@@ -20,7 +20,7 @@ function footer() {
           </a>
           <div className="flex flex-col">
             <p className="text-3xl font-marcellus">Free Shipping</p>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+            <p>Enjoy fast, free shipping on every order.</p>
           </div>
         </div>
 
@@ -34,7 +34,7 @@ function footer() {
           </a>
           <div className="flex flex-col">
             <p className="text-3xl font-marcellus">Daily Mega Discount</p>
-            <p>Lorem, ipsum dolor sit sicing elit.</p>
+            <p>Save big every day with mega discounts!</p>
           </div>
         </div>
 
@@ -49,7 +49,7 @@ function footer() {
           </a>
           <div className="flex flex-col">
             <p className="text-3xl font-marcellus">Daily Fresh Products</p>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit.</p>
+            <p>Daily delivery of fresh products.</p>
           </div>
         </div>
       </div>
@@ -58,14 +58,15 @@ function footer() {
 
         {/* Left Section */}
         <div className="lg:w-1/4 md:w-1/2 w-full px-4">
-          <p className="title-font  text-white tracking-widest text-3xl mb-3 font-marcellus">Information</p>
+          <p className="title-font  text-white tracking-widest text-3xl mb-3 font-marcellus">Get In Touch</p>
           <nav className="list-none space-y-6 mb-10">
             <li>
-              <a className="text-slate-300 ">Lorem, ipsum dolor sit amet consectetur adipisicing elit</a>
+              <a className="text-slate-300 ">Address: <br/> B-108, Landmark
+              Kudasan, Gandhinagar, Gujarat, India</a>
             </li>
             <hr className="border-t border-gray-300 my-8"></hr>
             <li>
-              <a className="text-slate-300 ">Lorem, ipsum dolor sit amet consectetur adipisicing elit</a>
+              <a className="text-slate-300 ">Need Help? <br/> Call: +(91) 99 0999 9999</a>
             </li>
 
           </nav>
@@ -80,10 +81,10 @@ function footer() {
           <p className="title-font  text-white tracking-widest text-3xl mb-3 font-marcellus">Information</p>
           <nav className="list-none space-y-6 mb-10">
             <li>
-              <a href="#" className="text-slate-300 hover:text-white">About Us</a>
+              <a href="/aboutus" className="text-slate-300 hover:text-white">About Us</a>
             </li>
             <li>
-              <a href="#" className="text-slate-300 hover:text-white">Privacy Policy</a>
+              <a href="/privacypolicy" className="text-slate-300 hover:text-white">Privacy Policy</a>
             </li>
             <li>
               <a href="/checkout" className="text-slate-300 hover:text-white">Checkout</a>
@@ -92,7 +93,7 @@ function footer() {
               <a href="/wishlist" className="text-slate-300 hover:text-white">Wishlist</a>
             </li>
             <li>
-              <a href="#" className="text-slate-300 hover:text-white">Contact Us</a>
+              <a href="/contactus" className="text-slate-300 hover:text-white">Contact Us</a>
             </li>
           </nav>
         </div>
@@ -101,19 +102,19 @@ function footer() {
           <p className="title-font  text-white tracking-widest text-3xl mb-3 font-marcellus">Categories</p>
           <nav className="list-none space-y-6 mb-10">
             <li>
-              <a className="text-slate-300 hover:text-white">Fruits & Vegetables</a>
+              <a href="#" className="text-slate-300 hover:text-white">Fruits & Vegetables</a>
             </li>
             <li>
-              <a className="text-slate-300 hover:text-white">Dairy & Beverages</a>
+              <a href="#" className="text-slate-300 hover:text-white">Dairy & Beverages</a>
             </li>
             <li>
-              <a className="text-slate-300 hover:text-white">Meats & Seafoods</a>
+              <a href="#" className="text-slate-300 hover:text-white">Meats & Seafoods</a>
             </li>
             <li>
-              <a className="text-slate-300 hover:text-white">Bakery</a>
+              <a href="#" className="text-slate-300 hover:text-white">Bakery</a>
             </li>
             <li>
-              <a className="text-slate-300 hover:text-white">Biscuits & Snacks</a>
+              <a href="#" className="text-slate-300 hover:text-white">Biscuits & Snacks</a>
             </li>
           </nav>
         </div>
@@ -131,19 +132,19 @@ function footer() {
           </div>
           <div className="flex flex-row">
 
-            <a className="flex h-10 w-10 ml-3 text-gray-500">
+            <a href="https://www.instagram.com/paradisepulse4?igsh=MTd4N3F6dGMybjVrOA==" className="flex h-10 w-10 ml-3 text-gray-500">
               <svg width="62" height="62" viewBox="0 0 62 62" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="31" cy="31" r="31" fill="#496547" />
                 <path d="M31.741 41.0002V31.8772H34.803L35.262 28.3222H31.742V26.0522C31.742 25.0222 32.027 24.3212 33.503 24.3212L35.386 24.3202V21.1402C34.4749 21.0437 33.5592 20.997 32.643 21.0002C29.928 21.0002 28.07 22.6572 28.07 25.7002V28.3222H25V31.8772H28.07V41.0002H31.741V41.0002Z" fill="#F2F2EC" />
               </svg>
             </a>
-            <a className="flex h-10 w-10 ml-3 text-gray-500">
+            <a href="https://www.instagram.com/paradisepulse4?igsh=MTd4N3F6dGMybjVrOA==" className="flex h-10 w-10 ml-3 text-gray-500">
               <svg width="62" height="62" viewBox="0 0 62 62" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="31" cy="31" r="31" fill="#496547" />
                 <path d="M26.8 21H35.2C38.4 21 41 23.6 41 26.8V35.2C41 36.7383 40.3889 38.2135 39.3012 39.3012C38.2135 40.3889 36.7383 41 35.2 41H26.8C23.6 41 21 38.4 21 35.2V26.8C21 25.2617 21.6111 23.7865 22.6988 22.6988C23.7865 21.6111 25.2617 21 26.8 21M26.6 23C25.6452 23 24.7295 23.3793 24.0544 24.0544C23.3793 24.7295 23 25.6452 23 26.6V35.4C23 37.39 24.61 39 26.6 39H35.4C36.3548 39 37.2705 38.6207 37.9456 37.9456C38.6207 37.2705 39 36.3548 39 35.4V26.6C39 24.61 37.39 23 35.4 23H26.6ZM36.25 24.5C36.5815 24.5 36.8995 24.6317 37.1339 24.8661C37.3683 25.1005 37.5 25.4185 37.5 25.75C37.5 26.0815 37.3683 26.3995 37.1339 26.6339C36.8995 26.8683 36.5815 27 36.25 27C35.9185 27 35.6005 26.8683 35.3661 26.6339C35.1317 26.3995 35 26.0815 35 25.75C35 25.4185 35.1317 25.1005 35.3661 24.8661C35.6005 24.6317 35.9185 24.5 36.25 24.5ZM31 26C32.3261 26 33.5979 26.5268 34.5355 27.4645C35.4732 28.4021 36 29.6739 36 31C36 32.3261 35.4732 33.5979 34.5355 34.5355C33.5979 35.4732 32.3261 36 31 36C29.6739 36 28.4021 35.4732 27.4645 34.5355C26.5268 33.5979 26 32.3261 26 31C26 29.6739 26.5268 28.4021 27.4645 27.4645C28.4021 26.5268 29.6739 26 31 26M31 28C30.2044 28 29.4413 28.3161 28.8787 28.8787C28.3161 29.4413 28 30.2044 28 31C28 31.7956 28.3161 32.5587 28.8787 33.1213C29.4413 33.6839 30.2044 34 31 34C31.7956 34 32.5587 33.6839 33.1213 33.1213C33.6839 32.5587 34 31.7956 34 31C34 30.2044 33.6839 29.4413 33.1213 28.8787C32.5587 28.3161 31.7956 28 31 28Z" fill="#F2F2EC" />
               </svg>
             </a>
-            <a className="flex h-10 w-10 ml-3 text-gray-500">
+            <a href="https://www.instagram.com/paradisepulse4?igsh=MTd4N3F6dGMybjVrOA==" className="flex h-10 w-10 ml-3 text-gray-500">
               <svg width="62" height="62" viewBox="0 0 62 62" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <circle cx="31" cy="31" r="31" fill="#496547" />
                 <path d="M31 23C31.855 23 32.732 23.022 33.582 23.058L34.586 23.106L35.547 23.163L36.447 23.224L37.269 23.288C38.161 23.3563 39.0004 23.7369 39.6395 24.363C40.2786 24.9891 40.6764 25.8205 40.763 26.711L40.803 27.136L40.878 28.046C40.948 28.989 41 30.017 41 31C41 31.983 40.948 33.011 40.878 33.954L40.803 34.864C40.79 35.01 40.777 35.151 40.763 35.289C40.6764 36.1796 40.2784 37.0112 39.6391 37.6373C38.9999 38.2634 38.1602 38.6439 37.268 38.712L36.448 38.775L35.548 38.837L34.586 38.894L33.582 38.942C32.7218 38.9794 31.861 38.9987 31 39C30.139 38.9987 29.2782 38.9794 28.418 38.942L27.414 38.894L26.453 38.837L25.553 38.775L24.731 38.712C23.839 38.6437 22.9996 38.2631 22.3605 37.637C21.7214 37.0109 21.3236 36.1795 21.237 35.289L21.197 34.864L21.122 33.954C21.0455 32.9711 21.0048 31.9858 21 31C21 30.017 21.052 28.989 21.122 28.046L21.197 27.136C21.21 26.99 21.223 26.849 21.237 26.711C21.3235 25.8207 21.7212 24.9894 22.3601 24.3633C22.999 23.7373 23.8381 23.3565 24.73 23.288L25.551 23.224L26.451 23.163L27.413 23.106L28.417 23.058C29.2775 23.0206 30.1387 23.0013 31 23V23ZM31 25C30.175 25 29.326 25.022 28.5 25.056L27.522 25.103L26.583 25.158L25.701 25.218L24.893 25.281C24.4683 25.3111 24.068 25.4906 23.7631 25.7877C23.4581 26.0848 23.2682 26.4803 23.227 26.904C23.11 28.113 23 29.618 23 31C23 32.382 23.11 33.887 23.227 35.096C23.312 35.968 24.004 36.646 24.893 36.719L25.701 36.781L26.583 36.841L27.522 36.897L28.5 36.944C29.326 36.978 30.175 37 31 37C31.825 37 32.674 36.978 33.5 36.944L34.478 36.897L35.417 36.842L36.299 36.782L37.107 36.719C37.5317 36.6889 37.932 36.5094 38.2369 36.2123C38.5419 35.9152 38.7318 35.5197 38.773 35.096C38.89 33.887 39 32.382 39 31C39 29.618 38.89 28.113 38.773 26.904C38.7318 26.4803 38.5419 26.0848 38.2369 25.7877C37.932 25.4906 37.5317 25.3111 37.107 25.281L36.299 25.219L35.417 25.159L34.478 25.103L33.5 25.056C32.6671 25.0202 31.8336 25.0015 31 25V25ZM29 28.575C28.9999 28.4773 29.0237 28.381 29.0694 28.2946C29.115 28.2081 29.181 28.1341 29.2618 28.079C29.3425 28.0239 29.4354 27.9894 29.5326 27.9784C29.6297 27.9674 29.728 27.9803 29.819 28.016L29.9 28.056L34.1 30.48C34.1836 30.5283 34.2544 30.596 34.3063 30.6774C34.3581 30.7589 34.3896 30.8517 34.3979 30.9478C34.4062 31.044 34.3912 31.1408 34.3542 31.23C34.3171 31.3192 34.2591 31.3981 34.185 31.46L34.1 31.52L29.9 33.945C29.8154 33.994 29.72 34.0216 29.6223 34.0253C29.5246 34.0291 29.4274 34.0089 29.3393 33.9665C29.2511 33.9241 29.1747 33.8608 29.1166 33.7821C29.0585 33.7034 29.0205 33.6117 29.006 33.515L29 33.425V28.575V28.575Z" fill="#F2F2EC" />
