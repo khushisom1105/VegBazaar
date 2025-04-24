@@ -35,17 +35,17 @@ function Product() {
     const fetchProducts = async () => {
         try {
             const response = await axios.get("http://localhost:4007/products/products");
-            if(category === "all"){
+            if (category === "all") {
                 setProducts(response.data.products);
             }
-            else{
+            else {
                 const filteredProducts = response.data.products.filter(
                     (product) => product.category._id === category?._id
                 );
                 setProducts(filteredProducts);
             }
-           
-           
+
+
         } catch (error) {
             console.error("Error fetching categories:", error);
         }
@@ -158,8 +158,13 @@ function Product() {
                     </button>
                     <div className="grid lg:grid-cols-3 gap-8 sm:grid-cols-2 grid-cols-1">
                         {products.map((product) => (
-                            <div key={product._id} className='flex flex-col rounded-2xl border p-3 gap-3'
+                            <div key={product._id} className='flex flex-col rounded-2xl border p-3 gap-3 relative'
                                 onClick={() => navigate("/product-detail", { state: { product } })}>
+                                {product.stock === 0 && (
+                                    <div className="absolute top-2 right-2 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full z-10 shadow-md">
+                                        OUT OF STOCK
+                                    </div>
+                                )}
                                 <div className='flex justify-center items-center'>
                                     <img src={product.images} className="object-cover rounded-2xl w-full h-32"></img>
                                 </div>

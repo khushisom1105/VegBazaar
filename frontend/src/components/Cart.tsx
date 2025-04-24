@@ -34,6 +34,14 @@ const Cart: React.FC<CartProps> = ({ isOpen, closeCart }) => {
   };
 
   const updateQuantity = (productId: string, newQuantity: number) => {
+    const item = cartItems.find(item => item.productId === productId);
+    if (!item) return;
+
+    if (newQuantity > item.stock) {
+      alert("No more stock available");
+      return;
+    }
+
     const updatedCart = cartItems.map(item =>
       item.productId === productId
         ? { ...item, quantity: Math.max(item.type_quantity === "Piece" ? 1 : 0.25, Math.min(newQuantity, item.stock)) }
@@ -95,16 +103,26 @@ const Cart: React.FC<CartProps> = ({ isOpen, closeCart }) => {
                                     </div>
                                     <div className="flex flex-1 items-end justify-between text-sm">
                                       <div className="flex items-center space-x-2">
-                                        <button onClick={() => updateQuantity(item.productId, item.quantity - (item.type_quantity === "Piece" ? 1 : 0.25))} className="px-2 py-1 bg-gray-200 rounded">
+                                        <button 
+                                          onClick={() => updateQuantity(item.productId, item.quantity - (item.type_quantity === "Piece" ? 1 : 0.25))} 
+                                          className="px-2 py-1 bg-gray-200 rounded"
+                                        >
                                           -
                                         </button>
                                         <p className="text-gray-500">{item.quantity}</p>
-                                        <button onClick={() => updateQuantity(item.productId, item.quantity + (item.type_quantity === "Piece" ? 1 : 0.25))} className="px-2 py-1 bg-gray-200 rounded" disabled={item.quantity >= item.stock}>
+                                        <button 
+                                          onClick={() => updateQuantity(item.productId, item.quantity + (item.type_quantity === "Piece" ? 1 : 0.25))} 
+                                          className="px-2 py-1 bg-gray-200 rounded" 
+                                          disabled={item.quantity >= item.stock}
+                                        >
                                           +
                                         </button>
                                       </div>
 
-                                      <button onClick={() => removeItem(item.productId)} className="text-red-500 hover:text-red-700">
+                                      <button 
+                                        onClick={() => removeItem(item.productId)} 
+                                        className="text-red-500 hover:text-red-700"
+                                      >
                                         Remove
                                       </button>
                                     </div>

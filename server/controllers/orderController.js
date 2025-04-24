@@ -3,10 +3,16 @@ const { getUser } = require("../services/userAuth");
 // ✅ Place Order
 exports.placeOrder = async (req, res) => {
   try {
-    const auth = getUser(req.headers.authorization);
+    console.log("hii 3")
+ 
+    const auth = await getUser(req.headers.authorization);
     const userId = auth.id; 
+    console.log(
+      "User Id",userId
+    )
     const orderData = req.body;
     const order = await OrderService.placeOrder(userId, orderData);
+    
     res.status(201).json({ success: true, message: "Order placed successfully", order });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
