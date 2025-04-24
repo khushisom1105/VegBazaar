@@ -1,11 +1,12 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import chatIcon from "../assets/chat-icon.png"; // 👈 You can use any icon here or emoji
+import axios from 'axios';
 
 const ChatBox = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<{ text: string; sender: "user" | "bot" }[]>([]);
+  const [messages, setMessages] = useState<{ text: string; sender: "user" | "bot"; commentId?: string; isFAQ?: boolean }[]>([]);
   const [input, setInput] = useState("");
+  const [isAdminResponse, setIsAdminResponse] = useState(false);
   const chatRef = useRef<HTMLDivElement>(null);
 
   const faqOptions = [
@@ -15,23 +16,109 @@ const ChatBox = () => {
     { question: "Do you accept cash on delivery?", answer: "Yes, we accept Cash on Delivery along with online payments." },
   ];
 
+  // Scroll to bottom of chat when messages update
   useEffect(() => {
     if (chatRef.current) {
       chatRef.current.scrollTop = chatRef.current.scrollHeight;
     }
   }, [messages]);
 
-  const handleQuestionClick = (question: string, answer: string) => {
-    setMessages((prev) => [...prev, { text: question, sender: "user" }, { text: answer, sender: "bot" }]);
+  // Fetch comments and map them to chat messages
+  const fetchComments = async () => {
+    try {
+      const res = await axios.get('http://localhost:4007/cms/comments');
+      const fetchedComments = res.data.comments;
+
+      // Filter out FAQ messages to avoid overwriting them
+      const currentFAQMessages = messages.filter(msg => msg.isFAQ);
+
+      // Map comments to messages, ensuring both user message and admin reply are shown
+      const commentMessages = fetchedComments.flatMap(comment => {
+        const messageList = [];
+        // Add user message
+        messageList.push({
+          text: comment.message,
+          sender: "user",
+          commentId: comment._id,
+        });
+        // If replied, add admin reply as a separate message
+        if (comment.replied) {
+          messageList.push({
+            text: comment.reply,
+            sender: "bot",
+            commentId: comment._id,
+          });
+        } else if (!messages.some(msg => msg.commentId === comment._id && msg.sender === "bot")) {
+          // Add "awaiting response" message only if not already present
+          messageList.push({
+            text: "Thank you for reaching out! We'll get back to you soon.",
+            sender: "bot",
+            commentId: comment._id,
+          });
+        }
+        return messageList;
+      });
+
+      // Combine FAQ messages with comment messages
+      setMessages([...currentFAQMessages, ...commentMessages]);
+    } catch (error) {
+      console.error('Error fetching comments:', error);
+    }
   };
 
-  const sendMessage = () => {
+  // Fetch comments on mount
+  useEffect(() => {
+    fetchComments();
+  }, []);
+
+  // Poll for admin replies if a message is sent to admin
+  useEffect(() => {
+    if (isAdminResponse) {
+      const interval = setInterval(fetchComments, 5000); // Poll every 5 seconds
+      return () => clearInterval(interval);
+    }
+  }, [isAdminResponse]);
+
+  // Handle clicking a predefined FAQ question
+  const handleQuestionClick = (question: string, answer: string) => {
+    setMessages((prev) => [
+      ...prev,
+      { text: question, sender: "user", isFAQ: true },
+      { text: answer, sender: "bot", isFAQ: true },
+    ]);
+  };
+
+  // Handle sending a custom message
+  const sendMessage = async () => {
     if (!input.trim()) return;
-    setMessages([...messages, { text: input, sender: "user" }]);
+
+    // Add user's message to the chat
+    setMessages((prev) => [...prev, { text: input, sender: "user" }]);
+
+    // Check if the message matches a predefined FAQ
+    const faq = faqOptions.find((option) => option.question.toLowerCase() === input.toLowerCase());
+    if (faq) {
+      setMessages((prev) => [
+        ...prev,
+        { text: faq.answer, sender: "bot", isFAQ: true },
+      ]);
+    } else {
+      // If not a predefined question, send to admin
+      try {
+        const res = await axios.post('http://localhost:4007/cms/comments', { message: input });
+        const commentId = res.data.comment._id;
+        setMessages((prev) => [
+          ...prev,
+          { text: "Thank you for reaching out! We'll get back to you soon.", sender: "bot", commentId },
+        ]);
+        setIsAdminResponse(true);
+      } catch (error) {
+        console.error('Error sending comment:', error);
+        setMessages((prev) => [...prev, { text: "Error sending message. Please try again.", sender: "bot" }]);
+      }
+    }
+
     setInput("");
-    setTimeout(() => {
-      setMessages((prev) => [...prev, { text: "Thank you for reaching out! We'll get back to you soon.", sender: "bot" }]);
-    }, 1000);
   };
 
   return (
