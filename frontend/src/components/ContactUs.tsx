@@ -18,30 +18,9 @@ const ContactUs = () => {
 
   return (
     <>
-      {/* <div className="bg-[#3B5236] py-20 md:py-28 lg:py-32 text-white">
-        <div className="container mx-auto px-4">
-            <div className="mt-2 text-base md:text-lg text-center">
-                <h5 className="text-5xl font-semibold">Contact Us</h5>
-                <p className="mt-2 text-base md:text-md">
-                Lorem ipsum dolor sit amet consectetur. Condimentum sed sed blandit purus nec nibh tortor ipsum.
-                </p>
-            </div>
-            <div className="mt-2 text-base md:text-lg">
-                <nav aria-label="breadcrumb">
-                <ol className="flex justify-center md:justify-center space-x-2 text-sm md:text-base">
-                    <li>
-                    <a href="/" className="text-white text-xl hover:text-white">Home</a>
-                    </li>
-                    <li className="text-white text-xl">{">"}</li>
-                    <li className="text-white text-xl">Contact</li>
-                </ol>
-                </nav>
-            </div>
-        </div>
-    </div> */}
     <div className='bg-[#3B5236] flex flex-col justify-center items-center h-96 text-white gap-3 p-10'>
                 <p className='flex font-marcellus text-4xl font-semibold'>Contact Us</p>
-                <p className='flex'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error, eos laboriosam quia facilis a quas!</p>
+                <p className='flex'>Let’s connect! We’re just a message or call away.</p>
                 <p className='flex font-nunito text-lg font-semibold'>Home &rarr; Contact</p>
             </div>
 
@@ -61,7 +40,7 @@ const ContactUs = () => {
               <div>
                 <h5 className="text-lg font-semibold">Address</h5>
                 <address className="text-gray-600">
-                  B-104, Landmark<br />Kudasan, Gandhinagar, Gujarat, India
+                  B-108, Landmark<br />Kudasan, Gandhinagar, Gujarat, India
                 </address>
               </div>
               <div>
@@ -88,10 +67,7 @@ const ContactUs = () => {
           {/* Contact Form Section */}
           <div className="bg-gray-100 p-6 rounded-lg shadow-md">
             <h6 className="text-lg font-semibold">Fill the form</h6>
-            <h5 className="text-xl font-bold">Leave Us A Message</h5>
-            <p className="text-gray-600 text-sm mb-4">
-              Lorem Ipsum is simply dummy text of the printing and typesetting industry...
-            </p>
+            <h5 className="text-xl font-bold">Leave Us A Message</h5> <br/>
             <form className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <input type="text" name="Name" placeholder="Name" className="p-3 border rounded w-full" />
@@ -100,7 +76,6 @@ const ContactUs = () => {
               <input type="text" name="Subject" placeholder="Subject" className="p-3 border rounded w-full" />
               <textarea name="Message" placeholder="Type your message here" className="p-3 border rounded w-full" rows="4"></textarea>
               <button className='flex items-center justify-center font-nunito text-sm border p-3 px-8 rounded-full gap-2 bg-[#3B5236] text-white font-semibold hover:bg-[#D3B758]'>SEND MESSAGE <FaArrowRightLong /></button>
-              
             </form>
           </div>
         </div>

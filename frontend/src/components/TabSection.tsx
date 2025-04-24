@@ -8,40 +8,40 @@ function TabSection() {
     {
       id: 1,
       name: "Italian-Style Chicken Meatballs",
-      description: "Lorem ipsum dolor sit amet quam in lacus risus.",
-      price: "$8.45",
+      description: "Tender chicken meatballs with savory herbs and spices.",
+      price: "₹250",
       image: "assets/images/products/product-1.webp",
       link: "single-product.html",
     },
     {
       id: 2,
       name: "Seafoods Stuffed Alaskan Salmon",
-      description: "Lorem ipsum dolor sit amet quam in lacus risus.",
-      price: "$8.45",
+      description: "Succulent salmon stuffed with flavorful seafood blend.",
+      price: "₹219",
       image: "assets/images/products/product-2.webp",
       link: "single-product.html",
     },
     {
       id: 3,
       name: "Choice Angus Beef Stew Meat",
-      description: "Lorem ipsum dolor sit amet quam in lacus risus.",
-      price: "$8.45",
+      description: "Tender Angus beef stew meat, rich in flavor.",
+      price: "₹199",
       image: "assets/images/products/product-3.webp",
       link: "single-product.html",
     },
     {
       id: 4,
       name: "Crispy Classic Buffalo Wings",
-      description: "Lorem ipsum dolor sit amet quam in lacus risus.",
-      price: "$8.45",
+      description: "Crunchy, spicy wings coated in tangy sauce.",
+      price: "₹310",
       image: "assets/images/products/product-4.webp",
       link: "single-product.html",
     },
     {
       id: 5,
       name: "Grass-fed 85/15 Ground Beef",
-      description: "Lorem ipsum dolor sit amet quam in lacus risus.",
-      price: "$8.45",
+      description: "Tender, lean beef with rich, natural flavor.",
+      price: "₹260",
       image: "assets/images/products/product-4.webp",
       link: "single-product.html",
     },
@@ -66,9 +66,7 @@ function TabSection() {
             Top Category Of Organic Food
           </h5>
           <p className="text-sm text-gray-600 mt-4 max-w-2xl mx-auto">
-            Lorem ipsum dolor sit amet consectetur. Sit integer sit rhoncus nisl
-            magna risus amet at purus. Quam purus amet nunc dui elementum.
-          </p>
+          Explore our top categories of organic food, including fresh fruits, nutritious vegetables, wholesome bakery items, refreshing beverages, and tasty biscuits. Each product is carefully sourced to provide you with the highest quality, free from harmful chemicals and additives.          </p>
         </div>
         {/* section heading */}
         <div className="mg-tabs-box mt-4">

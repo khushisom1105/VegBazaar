@@ -20,7 +20,7 @@ const Banner = () => {
                   className="inline-block w-32 rounded-full"
                 />
               </span></div>
-            <div className="text-gray-300 font-bold">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque obcaecati saepe dolor illum, aperiam repudiandae!</div>
+            <div className="text-gray-300 font-bold">Experience the freshness of handpicked, locally-sourced vegetables delivered straight from trusted farms to your doorstep</div>
             <div className="flex font-marcellus justify-around items-center w-full">
               <button className='flex items-center justify-center font-nunito text-sm border p-3 px-8 rounded-full gap-2 bg-[#3B5236] text-white font-semibold hover:bg-[#D3B758]'
 
