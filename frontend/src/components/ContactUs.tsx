@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
+import { FaArrowRightLong } from 'react-icons/fa6';
 
 const ContactUs = () => {
 
     const faqs = [
-        { id: 1, question: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.", answer: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book." },
-        { id: 2, question: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.", answer: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s." },
-        { id: 3, question: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.", answer: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s." },
-        { id: 4, question: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.", answer: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s." },
-        { id: 5, question: "Lorem Ipsum is simply dummy text of the printing and typesetting industry.", answer: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s." },
+        { id: 1, question: "What types of vegetables do you offer?", answer: "We offer a wide range of fresh vegetables, including leafy greens, root vegetables, exotic produce, and organic options." },
+        { id: 2, question: "Do you sell organic vegetables?", answer: "Yes, we provide a selection of certified organic vegetables. Look for the Organic label on product pages." },
+        { id: 3, question: "Are your vegetables fresh?", answer: "Absolutely! We source our vegetables daily to ensure the freshest produce reaches your doorstep." },
+        { id: 4, question: "Do you offer seasonal vegetables?", answer: "Yes, we stock seasonal vegetables based on availability. Check our website for the latest arrivals." },
+        { id: 5, question: "How can I place an order?", answer: "Simply browse our website, add items to your cart, and proceed to checkout." },
       ];
       const [openFAQ, setOpenFAQ] = useState(null);
     
@@ -17,7 +18,7 @@ const ContactUs = () => {
 
   return (
     <>
-      <div className="bg-[#3B5236] py-20 md:py-28 lg:py-32 text-white">
+      {/* <div className="bg-[#3B5236] py-20 md:py-28 lg:py-32 text-white">
         <div className="container mx-auto px-4">
             <div className="mt-2 text-base md:text-lg text-center">
                 <h5 className="text-5xl font-semibold">Contact Us</h5>
@@ -37,7 +38,12 @@ const ContactUs = () => {
                 </nav>
             </div>
         </div>
-    </div>
+    </div> */}
+    <div className='bg-[#3B5236] flex flex-col justify-center items-center h-96 text-white gap-3 p-10'>
+                <p className='flex font-marcellus text-4xl font-semibold'>Contact Us</p>
+                <p className='flex'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Error, eos laboriosam quia facilis a quas!</p>
+                <p className='flex font-nunito text-lg font-semibold'>Home &rarr; Contact</p>
+            </div>
 
     <div className="py-20 bg-white">
       <div className="container mx-auto px-4">
@@ -61,10 +67,10 @@ const ContactUs = () => {
               <div>
                 <h5 className="text-lg font-semibold">Phone</h5>
                 <div className="text-gray-600">
-                  <a href="tel:+12345678900">+(91) 99 09XX XXXX  </a>
+                  <a href="tel:+12345678900">+(91) 99 0999 9999  </a>
                 </div>
                 <div className="text-gray-600">
-                  <a href="tel:+12345678900">+(91) 99 95XX XXXX</a>
+                  <a href="tel:+12345678900">+(91) 99 9505 9955</a>
                 </div>
               </div>
             </div>
@@ -93,9 +99,8 @@ const ContactUs = () => {
               </div>
               <input type="text" name="Subject" placeholder="Subject" className="p-3 border rounded w-full" />
               <textarea name="Message" placeholder="Type your message here" className="p-3 border rounded w-full" rows="4"></textarea>
-              <button type="submit" className="bg-[#3B5236] text-white px-6 py-2 rounded flex items-center gap-2">
-                SEND MESSAGE <img src="/assets/images/icons/Right-arrow.svg" alt="Arrow" />
-              </button>
+              <button className='flex items-center justify-center font-nunito text-sm border p-3 px-8 rounded-full gap-2 bg-[#3B5236] text-white font-semibold hover:bg-[#D3B758]'>SEND MESSAGE <FaArrowRightLong /></button>
+              
             </form>
           </div>
         </div>
