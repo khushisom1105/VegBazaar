@@ -61,7 +61,7 @@ const ContactUs = () => {
               <div>
                 <h5 className="text-lg font-semibold">Address</h5>
                 <address className="text-gray-600">
-                  B-10, Landmark<br />Kudasan, Gandhinagar, Gujarat, India
+                  B-108, Landmark<br />Kudasan, Gandhinagar, Gujarat, India
                 </address>
               </div>
               <div>
@@ -88,10 +88,7 @@ const ContactUs = () => {
           {/* Contact Form Section */}
           <div className="bg-gray-100 p-6 rounded-lg shadow-md">
             <h6 className="text-lg font-semibold">Fill the form</h6>
-            <h5 className="text-xl font-bold">Leave Us A Message</h5>
-            <p className="text-gray-600 text-sm mb-4">
-              Lorem Ipsum is simply dummy text of the printing and typesetting industry...
-            </p>
+            <h5 className="text-xl font-bold">Leave Us A Message</h5> <br/>
             <form className="space-y-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <input type="text" name="Name" placeholder="Name" className="p-3 border rounded w-full" />
@@ -100,7 +97,6 @@ const ContactUs = () => {
               <input type="text" name="Subject" placeholder="Subject" className="p-3 border rounded w-full" />
               <textarea name="Message" placeholder="Type your message here" className="p-3 border rounded w-full" rows="4"></textarea>
               <button className='flex items-center justify-center font-nunito text-sm border p-3 px-8 rounded-full gap-2 bg-[#3B5236] text-white font-semibold hover:bg-[#D3B758]'>SEND MESSAGE <FaArrowRightLong /></button>
-              
             </form>
           </div>
         </div>
