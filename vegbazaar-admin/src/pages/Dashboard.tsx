@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import Sidebar from '../components/Sidebar';
 
 interface Product {
   _id: string;
@@ -26,75 +28,82 @@ const AdminDashboard: React.FC = () => {
   const [categories, setCategories] = useState<Category[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>('');
-  const[selectedProduct, setSelectedProduct] = useState<string>('');
+  const [selectedProduct, setSelectedProduct] = useState<string>('');
   const [stock, setStock] = useState<number>(0);
   const [comments, setComments] = useState<Comment[]>([]);
   const [replyText, setReplyText] = useState<string>('');
 
-  // Fetch dashboard counts (placeholder API calls)
+  // Fetch dashboard counts and categories
   useEffect(() => {
     const fetchCounts = async () => {
-      // Replace with actual API endpoints
-      setUsersCount(10); // Example data
-      setCategoriesCount(3);
-      setProductsCount(5);
-      setOrdersCount(2);
+      try {
+        const [usersRes, categoriesRes, ordersRes] = await Promise.all([
+          axios.get('http://localhost:4007/cms/users/count'),
+          axios.get('http://localhost:4007/cms/categories/count'),
+          axios.get('http://localhost:4007/cms/orders/count'),
+        ]);
+        console.log(usersRes.data.count, "ho ho");
+        setUsersCount(usersRes.data.count);
+        setCategoriesCount(categoriesRes.data.count);
+        setOrdersCount(ordersRes.data.count);
+
+        const catRes = await axios.get('http://localhost:4007/category/fetch');
+        setCategories(catRes.data.categories);
+      } catch (error) {
+        console.error('Error fetching counts:', error);
+      }
     };
     fetchCounts();
   }, []);
 
-  // Fetch categories (placeholder API call)
-  useEffect(() => {
-    const fetchCategories = async () => {
-      // Replace with actual API endpoint
-      const dummyCategories: Category[] = [
-        { _id: '1', name: 'Vegetable' },
-        { _id: '2', name: 'Dairy Products' },
-        { _id: '3', name: 'Fruits' },
-      ];
-      setCategories(dummyCategories);
-    };
-    fetchCategories();
-  }, []);
-
-  // Fetch products based on selected category (placeholder API call)
+  // Fetch products based on selected category
   useEffect(() => {
     const fetchProducts = async () => {
-      if (selectedCategory) {
-        // Replace with actual API endpoint
-        const dummyProducts: Product[] = [
-          { _id: '1', name: 'Potato', stock: 10 },
-          { _id: '2', name: 'Tomato', stock: 10 },
-          { _id: '3', name: 'Carrot', stock: 10 },
-        ];
-        setProducts(dummyProducts);
-      } else {
+      try {
+        if (selectedCategory) {
+          const res = await axios.get(`http://localhost:4007/cms/products?category=${selectedCategory}`);
+          console.log(res.data.products, "Filtered products");
+          setProducts(res.data.products);
+          setProductsCount(res.data.products.length);
+        } else {
+          // Fetch all products if no category is selected
+          const res = await axios.get('http://localhost:4007/cms/products');
+          console.log(res.data.products, "All products");
+          setProducts(res.data.products);
+          setProductsCount(res.data.products.length);
+        }
+      } catch (error) {
+        console.error('Error fetching products:', error);
         setProducts([]);
+        setProductsCount(0);
       }
     };
     fetchProducts();
   }, [selectedCategory]);
 
-  // Fetch comments (placeholder API call)
-  useEffect(() => {
-    const fetchComments = async () => {
-      // Replace with actual API endpoint
-      const dummyComments: Comment[] = [
-        { _id: '1', message: 'Great service!', replied: false },
-        { _id: '2', message: 'Need faster delivery.', replied: true, reply: 'We’re working on it!' },
-      ];
-      setComments(dummyComments);
-    };
-    fetchComments();
-  }, []);
-
-  // Handle stock update (placeholder function)
+  // Handle stock update
   const handleUpdateStock = () => {
     if (selectedProduct && stock >= 0) {
       console.log(`Updating stock for ${selectedProduct} to ${stock}`);
-      // Replace with API call to update stock
-      alert('Stock updated successfully!');
-      setStock(0);
+      axios.put(`http://localhost:4007/cms/products/${selectedProduct}/stock`, { stock })
+        .then(() => {
+          alert('Stock updated successfully!');
+          setStock(0);
+          // Refresh products to reflect updated stock
+          const fetchProducts = async () => {
+            try {
+              const res = selectedCategory
+                ? await axios.get(`http://localhost:4007/cms/products?category=${selectedCategory}`)
+                : await axios.get('http://localhost:4007/cms/products');
+              setProducts(res.data.products);
+              setProductsCount(res.data.products.length);
+            } catch (error) {
+              console.error('Error refreshing products:', error);
+            }
+          };
+          fetchProducts();
+        })
+        .catch((error) => console.error('Error updating stock:', error));
     } else {
       alert('Please select a product and enter a valid stock quantity.');
     }
@@ -110,28 +119,16 @@ const AdminDashboard: React.FC = () => {
       );
       setComments(updatedComments);
       setReplyText('');
-      console.log(`Replied to comment ${commentId}: ${replyText}`);
-      // Replace with API call to save reply
-      alert('Reply submitted!');
+      axios.post(`http://localhost:4007/cms/comments/${commentId}/reply`, { reply: replyText })
+        .then(() => alert('Reply submitted!'))
+        .catch((error) => console.error('Error submitting reply:', error));
     }
   };
 
   return (
     <div className="flex h-screen bg-gray-100">
       {/* Sidebar */}
-      <aside className="w-64 bg-green-700 text-white p-4">
-        <h2 className="text-2xl font-bold mb-6">Admin Panel</h2>
-        <nav>
-          <ul>
-            <li className="mb-4"><i className="fas fa-tachometer-alt mr-2"></i>Dashboard</li>
-            <li className="mb-4"><i className="fas fa-users mr-2"></i>Users</li>
-            <li className="mb-4"><i className="fas fa-boxes mr-2"></i>Products</li>
-            <li className="mb-4"><i className="fas fa-list-alt mr-2"></i>Categories</li>
-            <li className="mb-4"><i className="fas fa-shopping-cart mr-2"></i>Orders</li>
-            <li className="mb-4 text-red-300"><i className="fas fa-sign-out-alt mr-2"></i>Logout</li>
-          </ul>
-        </nav>
-      </aside>
+      <Sidebar />
 
       {/* Main Content */}
       <main className="flex-1 p-6">
