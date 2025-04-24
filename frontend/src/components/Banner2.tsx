@@ -8,6 +8,9 @@ const slides = [
     id: 1,
     title: "100% Organic And Natural Fresh Vegetables",
     subtitle: "Fruits & Vegetables",
+    category:{
+      _id:""
+    },
     description:
       "Lorem ipsum dolor sit amet consectetur. Morbi vitae risus in adipiscing orci. Tempor tristique vulputate tortor adipiscing viverra pretium.",
     image: "../../public/assets/images/products/slider-img.webp",

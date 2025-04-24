@@ -12,6 +12,7 @@ function setUser(id, email) {
 
 function getUser(token) {
   try {
+      console.log("hii 4")
     console.log("token", token);
     if (!token) return null;
     const decode = jwt.verify(token, secret);
