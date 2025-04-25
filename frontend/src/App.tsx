@@ -18,7 +18,7 @@ function app() {
      <Banner/>
      <FeatureSection/>
      <CategoryGrid/>
-     <TabSection/>
+     {/* <TabSection/> */}
      <Banner2/>
      <ProductCarousel/>
      <BannerD/>
