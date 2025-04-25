@@ -1,0 +1,48 @@
+const express = require('express');
+const router = express.Router();
+const User = require('../models/userSchema');
+const Category = require('../models/categorySchema');
+const Product = require('../models/productSchema');
+const Order = require('../models/orderSchema');
+
+// Get number of users
+router.get('/users/count', async (req, res) => {
+  try {
+    const count = await User.countDocuments();
+    res.status(200).json({ success: true, count });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+});
+
+// Get number of categories
+router.get('/categories/count', async (req, res) => {
+  try {
+    const count = await Category.countDocuments();
+    res.status(200).json({ success: true, count });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+});
+
+// Get number of products
+router.get('/products/count', async (req, res) => {
+  try {
+    const count = await Product.countDocuments();
+    res.status(200).json({ success: true, count });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+});
+
+// Get number of orders
+router.get('/orders/count', async (req, res) => {
+  try {
+    const count = await Order.countDocuments();
+    res.status(200).json({ success: true, count });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+});
+
+module.exports = router;
