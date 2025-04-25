@@ -1,10 +1,12 @@
 import { useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { FaStar } from "react-icons/fa";
+import { IoMdHeart, IoMdHeartEmpty } from "react-icons/io";
 
 const ViewProductDetail = () => {
   const location = useLocation();
   const product = location.state?.product || {};
+  const [isInWishlist, setIsInWishlist] = useState(false);
 
   // Determine the step value and initial quantity based on type_quantity
   const stepValue = product.type_quantity === "Piece" ? 1 : 0.25;
@@ -16,6 +18,42 @@ const ViewProductDetail = () => {
     console.log(product);
     window.scrollTo(0, 0); // Scroll to the top when the page loads
   }, []);
+
+  useEffect(() => {
+    const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+    const exists = wishlist.some(item => item.productId === product._id);
+    setIsInWishlist(exists);
+  }, [product]);
+
+  const handleWishlistToggle = () => {
+    let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+    if (!localStorage.getItem("user")) {
+      alert("Please Login First");
+      return;
+    }
+
+    const existingIndex = wishlist.findIndex(item => item.productId === product._id);
+
+    if (existingIndex > -1) {
+      wishlist.splice(existingIndex, 1);
+      setIsInWishlist(false);
+      alert("Removed from Wishlist");
+    } else {
+      wishlist.push({
+        productId: product._id,
+        name: product.name,
+        price: product.price,
+        image: product.images,
+        category: product.category?.name,
+      });
+      setIsInWishlist(true);
+      alert("Added to Wishlist");
+    }
+
+    localStorage.setItem("wishlist", JSON.stringify(wishlist));
+    window.dispatchEvent(new Event("storage")); // Optional: sync across tabs
+  };
 
   // Ensure quantity updates correctly with stock limit
   function updateQuantity(amount) {
@@ -61,7 +99,7 @@ const ViewProductDetail = () => {
     <div className="container mx-auto p-8 font-nunito">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Product Image with Overlay */}
-        <div className="relative">
+        <div className="relative -z-10">
           <img
             src={product.images || "/placeholder.jpg"}
             alt={product.name || "Product"}
@@ -88,9 +126,8 @@ const ViewProductDetail = () => {
 
           <p className="text-gray-600 mt-4">{product.description}</p>
           <p
-            className={`text-lg font-semibold mt-2 font-marcellus ${
-              product.stock === 0 ? "line-through text-red-400" : "text-[#3B5236]"
-            }`}
+            className={`text-lg font-semibold mt-2 font-marcellus ${product.stock === 0 ? "line-through text-red-400" : "text-[#3B5236]"
+              }`}
           >
             Price: ₹{product.price} / {product.type_quantity}
           </p>
@@ -138,13 +175,29 @@ const ViewProductDetail = () => {
               </div>
 
               {/* Add to Cart Button */}
-              <button
-                className="mt-6 bg-[#D3B758] text-white py-3 px-6 rounded-full font-semibold hover:bg-[#b89e44] disabled:cursor-not-allowed disabled:bg-gray-400"
-                onClick={handleAddToCart}
-                disabled={product.stock === 0}
-              >
-                ADD TO CART
-              </button>
+              <div className="flex items-center mt-6 gap-8">
+                <button
+                  className=" bg-[#D3B758] text-white py-3 px-6 rounded-full font-semibold hover:bg-[#b89e44] disabled:cursor-not-allowed disabled:bg-gray-400"
+                  onClick={handleAddToCart}
+                  disabled={product.stock === 0}
+                >
+                  ADD TO CART
+                </button>
+                <div
+                  className='flex items-center h-10 w-10 bg-[#F3EAD7] rounded-full cursor-pointer'
+                  onClick={handleWishlistToggle}
+                  title={isInWishlist ? "Remove from Wishlist" : "Add to Wishlist"}
+                >
+                  <div className="h-10 w-10 inline-flex justify-center items-center">
+                    {isInWishlist ? (
+                      <IoMdHeart className='w-7 h-7 text-red-500' />
+                    ) : (
+                      <IoMdHeartEmpty className='w-7 h-7 text-[#3B5236]' />
+                    )}
+                  </div>
+                </div>
+              </div>
+
             </>
           )}
         </div>

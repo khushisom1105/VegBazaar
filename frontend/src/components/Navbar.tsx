@@ -29,7 +29,7 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
   const [cartItems, setCartItems] = useState(localStorage.getItem("cart")?.length); // State for cart count
-  const [wishItems, setWishItems] = useState(3); // State for cart count
+  const [wishItems, setWishItems] = useState(localStorage.getItem("wishlist")?.length); // State for wishlist count
   const [categories, setCategories] = useState([]);
   const navigate = useNavigate();
 
@@ -49,6 +49,29 @@ export default function Navbar() {
       window.addEventListener("cartUpdated", updateCartCount);
     };
   }, []);
+
+  useEffect(() => {
+    const updateWishlistCount = async () => {
+      try {
+        const res = await axios.get("http://localhost:4007/wishlist/fetch");
+        setWishItems(res.data.totalItems || 0);
+      } catch (error) {
+        console.error("Error fetching wishlist count:", error);
+        setWishItems(0);
+      }
+    };
+  
+    updateWishlistCount(); 
+  
+    // Listen for custom event
+    window.addEventListener("wishlistUpdated", updateWishlistCount);
+  
+    return () => {
+      window.removeEventListener("wishlistUpdated", updateWishlistCount);
+    };
+  }, []);
+  
+  
 
   useEffect(() => {
 
@@ -179,14 +202,15 @@ export default function Navbar() {
           )}
 
            
-            <a href="/wishlist" className="relative text-sm/6 font-semibold p-2 rounded-full border border-white">
-              <IoMdHeartEmpty size={20} /> <span aria-hidden="true"></span>
-              {wishItems > 0 && (
-                <span className="absolute -top-1 -right-1 bg-red-600 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
-                  {wishItems}
-                </span>
-              )}
-            </a>
+<a href="/wishlist" className="relative text-sm/6 font-semibold p-2 rounded-full border border-white">
+  <IoMdHeartEmpty size={20} />
+  {wishItems > 0 && (
+    <span className="absolute -top-1 -right-1 bg-red-600 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
+      {wishItems}
+    </span>
+  )}
+</a>
+
             {/* <button onClick={handleCartClick}>Cart</button>
             {cartOpen && (
               <div ref={cartRef}>
@@ -295,16 +319,17 @@ export default function Navbar() {
                   Sign Up
                 </a>
                 <a
-                  href="/wishlist"
-                  className="-mx-3 rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50 flex justify-between items-center"
-                >
-                  Wishlist
-                  {wishItems > 0 && (
-                    <span className=" bg-red-600 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
-                      {wishItems}
-                    </span>
-                  )}
-                </a>
+  href="/wishlist"
+  className="-mx-3 rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50 flex justify-between items-center"
+>
+  Wishlist
+  {wishItems > 0 && (
+    <span className=" bg-red-600 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
+      {wishItems}
+    </span>
+  )}
+</a>
+
                 <a
                   href="#"
                   className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"

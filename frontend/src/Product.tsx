@@ -3,9 +3,6 @@ import SliderFilter from './SliderFilter';
 import { useLocation } from "react-router-dom";
 import productBanner from './image/Product-banner.webp'
 import leaf from './image/Double-leafs.png'
-import shop1 from './image/shop-img1.jpg'
-import shop2 from './image/shop-img2.jpg'
-import shop3 from './image/shop-img3.jpg'
 import img from './image/side-content-category-img1.jpg'
 // import StarRating from './StarRating'
 import { IoIosSearch, IoMdClose, IoMdMenu } from "react-icons/io";

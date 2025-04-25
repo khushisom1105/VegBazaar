@@ -6,7 +6,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { FaChevronLeft, FaChevronRight, FaStar } from "react-icons/fa";
-import { IoMdHeartEmpty } from "react-icons/io";
+import { IoMdHeart, IoMdHeartEmpty } from "react-icons/io";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
 
@@ -24,6 +24,17 @@ const ProductCarousel = () => {
             });
     }, []);
 
+    const [wishlist, setWishlist] = useState([]);
+
+    useEffect(() => {
+        const storedWishlist = JSON.parse(localStorage.getItem("wishlist") || "[]");
+        setWishlist(storedWishlist);
+    }, []);
+
+    const isInWishlist = (productId) => {
+        return wishlist.some(item => item._id === productId);
+    };
+
     return (
         <div className="relative max-w-screen-xl px-4 py-10 font-nunito mx-7 lg:mx-12 xl:mx-28 2xl:mx-36">
             <p className="text-center mb-4">Shop Essentials</p>
@@ -31,7 +42,7 @@ const ProductCarousel = () => {
                 VegBazaar Bestsellers
             </h2>
             <p className="text-center text-gray-600 mb-6">
-            Fresh, organic favorites loved by every household.
+                Fresh, organic favorites loved by every household.
             </p>
 
             {/* Swiper Container */}
@@ -54,10 +65,10 @@ const ProductCarousel = () => {
                     {products.map((product) => (
                         <SwiperSlide key={product._id}>
                             {product.stock === 0 && (
-                                    <div className="absolute top-2 right-2 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full z-10 shadow-md">
-                                        OUT OF STOCK
-                                    </div>
-                                )}
+                                <div className="absolute top-2 right-2 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full z-10 shadow-md">
+                                    OUT OF STOCK
+                                </div>
+                            )}
                             <div className="flex flex-col rounded-2xl border p-3 gap-3 overflow-hidden">
                                 <div className='flex justify-center items-center relative'>
                                     <img src={product.images} alt={product.name} className="h-32 object-cover rounded-2xl w-full" />
@@ -76,15 +87,20 @@ const ProductCarousel = () => {
                                     <div className='flex justify-between items-center'>
                                         <p className='font-marcellus font-semibold text-lg text-[#3B5236]'>₹{product.price}</p>
                                         <p className='font-marcellus font-semibold text-sm text-[#C9CDC2]' style={{ textDecoration: 'line-through' }}>₹{product.price.toFixed(2)}</p>
-                                        <div className='flex items-center h-7 w-7 bg-[#F3EAD7] mr-2 rounded-full'>
-                                            <div className="h-7 w-7 inline-flex justify-center items-center">
+                                        <div
+                                            className='flex items-center justify-center h-7 w-7 bg-[#F3EAD7] mr-2 rounded-full cursor-default'
+                                            title={isInWishlist(product._id) ? "In Wishlist" : "Not in Wishlist"}
+                                        >
+                                            {isInWishlist(product._id) ? (
+                                                <IoMdHeart className='w-5 h-5 text-red-500' />
+                                            ) : (
                                                 <IoMdHeartEmpty className='w-5 h-5 text-[#3B5236]' />
-                                            </div>
+                                            )}
                                         </div>
                                     </div>
                                 </div>
                                 <button className='flex items-center justify-center font-nunito text-sm border p-3 px-8 rounded-full gap-2 bg-[#3B5236] text-white font-semibold hover:bg-[#D3B758]'
-                                onClick={() => navigate("/product-detail", { state: { product } })}
+                                    onClick={() => navigate("/product-detail", { state: { product } })}
                                 >
                                     SEE DETAILS <FaArrowRightLong />
                                 </button>
